@@ -1,0 +1,8 @@
+export enum NavigationConstants {
+    AUTHENTICATE = "AUTHENTICATE",
+    LOGIN_SCREEN = "LOGIN_SCREEN",
+
+    HOME_SCREEN = "HOME_SCREEN",
+    CREATE_ORDER = "CREATE_ORDER",
+
+}
