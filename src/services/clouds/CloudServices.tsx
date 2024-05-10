@@ -49,7 +49,7 @@ export const getDistrict = (code: number) => {
     })
 }
 
-export const getcommune = (code: number) => {
+export const getCommune = (code: number) => {
     return new Promise((resolve, reject) => {
         axios.get(`${URL}${CloudConstants.COMMUNE}?district=${code}`).then(async (response: any) => {
             resolve(response.data)

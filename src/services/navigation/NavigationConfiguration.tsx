@@ -10,15 +10,18 @@ const Stack = createNativeStackNavigator();
 export const RootStack = () => {
     return (
         <Stack.Navigator
-            initialRouteName={NavigationConstants.HOME_SCREEN}
+            initialRouteName={NavigationConstants.AUTHENTICATE}
             screenOptions={{
-                // headerShown: false,
                 animation: 'slide_from_right'
             }}
         >
             <Stack.Screen
                 name={NavigationConstants.AUTHENTICATE}
                 component={Authentication}
+                options={{
+                    headerShown: false
+
+                }}
             />
             <Stack.Screen
                 name={NavigationConstants.HOME_SCREEN}
@@ -28,7 +31,6 @@ export const RootStack = () => {
                     headerStyle: {
                         backgroundColor: Colors.error,
                     },
-
                     headerTintColor: 'white',
 
                 }}
@@ -62,6 +64,15 @@ export const Authentication = () => {
             <AuthStack.Screen
                 name={NavigationConstants.LOGIN_SCREEN}
                 component={LoginScreen}
+                options={{
+                    title: "Đăng nhập",
+                    headerStyle: {
+                        backgroundColor: Colors.error,
+                    },
+
+                    headerTintColor: 'white',
+
+                }}
             />
         </AuthStack.Navigator>
     )

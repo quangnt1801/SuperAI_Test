@@ -5,5 +5,5 @@ export enum Colors {
     blackText = "#212121",
     colorBtn = "#C12B2B",
     error = "#E33131",
-    bluePrimary = "#36D4F4",
+    bluePrimary = "#0E3CE5",
 }

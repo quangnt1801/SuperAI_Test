@@ -1,17 +1,26 @@
-import { View, Text, StyleSheet, TextInput, TouchableNativeFeedback, Keyboard, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react'
-import Input from '../../../components/inputMW/Input';
 import { Colors } from '../../../services/utils/Colors';
-import { getProvince } from '../../../services/clouds/CloudServices';
-// var axios = require("axios");
-// var MockAdapter = require("axios-mock-adapter");
+import { TextInput } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { NavigationConstants } from '../../../services/navigation/NavigationConstants';
+import { navigateThenReset } from '../../../services/navigation/NavigationServices';
 
-const LoginScreen = () => {
+interface LoginProps {
+    navigation: any
+}
+
+const LoginScreen = (props: LoginProps) => {
+
+    const { navigation } = props;
 
     const [dataLogin, setDataLogin] = useState({
         email: '',
         password: ''
     })
+
+    const [isShowPassword, setShowPassword] = useState(false);
+    const [msgError, setMsgError] = useState('');
 
     // var mock = new MockAdapter(axios);
 
@@ -24,40 +33,76 @@ const LoginScreen = () => {
     }
 
     const onLogin = () => {
-        // mock.onPost("/auth/login").reply(function ())
-        const param = {
-            code: 71,
-            name: ''
+        if (Object.values(dataLogin).filter((item: any) => item === "").length > 0) {
+            setMsgError('Vui lòng điền đầy đủ thông tin!')
+            return
+        };
+
+        if (dataLogin.password.length < 8) {
+            setMsgError('Mật khẩu ít nhất 8 ký tự!')
+            return
         }
-        getProvince().then((reponse) => {
-            console.log("Get Province: ", reponse);
 
-        }).catch((error: any) => {
-            console.log("Get Province error: ", error);
+        setMsgError('')
 
-        })
+        navigateThenReset(navigation, NavigationConstants.HOME_SCREEN);
     }
 
     return (
-        <TouchableNativeFeedback
+        <TouchableWithoutFeedback
             onPress={onDismissKeyboard}
         >
             <View style={styles.flexView}>
                 <View style={styles.container}>
                     <View style={styles.viewInput}>
-                        <Input
-                            value={''}
-                            placeholder={'Số điện thoại / Email'}
-                            onChange={(text: string) => handleOnchangeText(text, 'email')}
-                            iconInput={''}
-                        />
-                        <Input
-                            value={''}
-                            placeholder={'Mật khẩu'}
-                            onChange={(text: string) => handleOnchangeText(text, 'password')}
-                            iconInput={''}
-                            style={{ borderWidth: 1, borderColor: 'blue' }}
-                        />
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <TextInput
+                                value={dataLogin.email}
+                                mode='outlined'
+                                selectionColor={Colors.placeholder}
+                                underlineColor={Colors.placeholder}
+                                activeUnderlineColor={Colors.placeholder}
+                                activeOutlineColor={Colors.bluePrimary}
+                                style={{
+                                    width: '100%',
+                                    height: 60,
+                                    borderRadius: 16,
+                                    marginTop: 10,
+                                    paddingLeft: 26
+                                }}
+                                label="Số điện thoại / Email"
+                                onChangeText={(text: string) => handleOnchangeText(text, 'email')}
+                            />
+                            <Icon name='user' size={26} style={{ position: 'absolute', left: 14, top: 32, alignSelf: 'center' }} />
+                        </View>
+                        <View style={{ alignItems: 'center', justifyContent: 'center', height: 60 }}>
+
+                            <TextInput
+                                value={dataLogin.password}
+                                label={'Mật khẩu'}
+                                mode='outlined'
+                                selectionColor={Colors.placeholder}
+                                underlineColor={Colors.placeholder}
+                                activeUnderlineColor={Colors.placeholder}
+                                activeOutlineColor={Colors.bluePrimary}
+                                secureTextEntry={!isShowPassword}
+                                style={{
+                                    width: '100%',
+                                    height: 60,
+                                    borderRadius: 16,
+                                    marginTop: 12,
+                                    paddingLeft: 26
+                                }}
+                                onChangeText={(text: string) => handleOnchangeText(text, 'password')}
+                            />
+                            <Icon name='lock' size={26} style={{ position: 'absolute', left: 14, top: 26, alignSelf: 'center' }} />
+                            <TouchableOpacity
+                                onPress={() => setShowPassword(!isShowPassword)}
+                                style={{ position: 'absolute', right: 14, top: 24, alignSelf: 'center', zIndex: 9999 }}
+                            >
+                                <Icon name={isShowPassword ? 'eye-slash' : 'eye'} size={26} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
                     <TouchableOpacity
@@ -77,22 +122,27 @@ const LoginScreen = () => {
                     >
                         <Text style={styles.txtRegister}>ĐĂNG KÝ</Text>
                     </TouchableOpacity>
+                    <Text style={styles.txtError}>
+                        {msgError}
+                    </Text>
                 </View>
             </View>
-        </TouchableNativeFeedback>
+        </TouchableWithoutFeedback>
     )
 }
 
 const styles = StyleSheet.create({
     flexView: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'white'
     },
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        paddingTop: 50
     },
     viewInput: {
+        width: '100%',
         paddingHorizontal: 16
     },
     btnLogin: {
@@ -129,6 +179,13 @@ const styles = StyleSheet.create({
     },
     txtForgot: {
 
+    },
+    txtError: {
+        fontSize: 12,
+        color: Colors.error,
+        marginTop: 20,
+        marginLeft: 18,
+        alignSelf: 'flex-start'
     }
 });
 

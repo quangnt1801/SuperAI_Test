@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, Dimensions } from 'react-native'
 import React, { useMemo, useRef, useState } from 'react'
-import { ParamArea, getDistrict, getProvince, getcommune } from '../../services/clouds/CloudServices';
+import { ParamArea, getDistrict, getProvince, getCommune } from '../../services/clouds/CloudServices';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFont from 'react-native-vector-icons/FontAwesome';
@@ -14,62 +14,64 @@ const CreateOrderScreen = () => {
     const dataProvince = useRef<ParamArea[]>([]);
     const [data, setData] = useState<any>([])
     const [isVisibleProvince, setVisibleProvince] = useState(false);
-    const [area, setArea] = useState<string>('');
-    const [stepArea, setStepArea] = useState('province')
+    const [area, setArea] = useState({
+        name: '',
+        code: 0
+    });
+    const [stepArea, setStepArea] = useState('')
     const [searchProvince, setSearchProvince] = useState('');
 
-    const getProvinceCloud = () => {
-        getProvince().then((reponse: any) => {
-            dataProvince.current = reponse.results
-            setData(reponse.results);
+    const fetchData = (getDataFunction: () => Promise<any>) => {
+        getDataFunction()
+            .then((response: any) => {
+                dataProvince.current = response.results;
+                setData(response.results);
+            })
+            .catch((error: any) => {
+                console.log(`Get data error: ${error}`);
+            });
+    };
 
-        }).catch((error: any) => {
-            console.log("Get Province error: ", error);
-
-        })
-    }
-
-    const getDistrictCloud = (code: number) => {
-        getDistrict(code).then((reponse: any) => {
-            dataProvince.current = reponse.results
-            setData(reponse.results);
-        }).catch((error: any) => {
-            console.log("Get District error: ", error);
-        })
-    }
-
-    const getCommuneCloud = (code: number) => {
-        getcommune(code).then((reponse: any) => {
-            dataProvince.current = reponse.results
-            setData(reponse.results);
-        }).catch((error: any) => {
-            console.log("Get Commune error: ", error);
-        })
-    }
+    const getProvinceCloud = () => fetchData(getProvince);
+    const getDistrictCloud = (code: number) => fetchData(() => getDistrict(code));
+    const getCommuneCloud = (code: number) => fetchData(() => getCommune(code));
 
     const selectArea = (item: ParamArea) => {
         switch (stepArea) {
             case 'province':
                 getDistrictCloud(item.code);
-                setArea(`${item.name}`)
+                setArea({
+                    name: `${item.name}`,
+                    code: item.code
+                })
                 setStepArea('district')
                 break;
             case 'district':
                 getCommuneCloud(item.code)
                 setStepArea('commune')
-                setArea(`${item.name} / ${item.province}`)
+                setArea({
+                    name: `${item.name} / ${item.province}`,
+                    code: item.code
+                })
                 break;
             case 'commune':
-                setStepArea('district')
-                setArea(`${item.name} / ${item.district} / ${item.province}`)
+                getCommuneCloud(item.code);
+                setArea({
+                    name: `${item.name} / ${item.district} / ${item.province}`,
+                    code: item.code
+                })
                 setVisibleProvince(!isVisibleProvince)
+                setStepArea('')
                 break;
 
             default:
+                getProvinceCloud()
+                setStepArea('province')
                 break;
         }
-
     }
+
+
 
     const renderItem = (item: any) => {
         const itemData = item.item;
@@ -89,7 +91,7 @@ const CreateOrderScreen = () => {
 
     const onCloseProvince = () => {
         setVisibleProvince(!isVisibleProvince)
-        setStepArea('province')
+
     }
 
     const handleSearch = (text: string) => {
@@ -118,6 +120,22 @@ const CreateOrderScreen = () => {
         }
     }
 
+    const renderTitleModal = () => {
+        switch (stepArea) {
+            case 'province':
+                return "Chọn Tỉnh/Thành Phố";
+
+            case 'district':
+                return "Chọn Quận/Huyện";
+
+            case 'commune':
+                return "Chọn Phường/Xã";
+
+            default:
+                return "Chọn Tỉnh/Thành Phố";
+        }
+    }
+
     const renderModalProvince = useMemo(() => {
         return (
             <Modal
@@ -130,7 +148,7 @@ const CreateOrderScreen = () => {
                 <View style={styles.viewModal}>
                     <View style={styles.viewContainerModal}>
                         <View style={styles.viewHeadeModal}>
-                            <Text style={styles.textHeaderModal}>Chọn Tỉnh/Thành Phố</Text>
+                            <Text style={styles.textHeaderModal}>{renderTitleModal()}</Text>
                             <TouchableOpacity
                                 style={styles.btnCloseModal}
                                 onPress={onCloseProvince}
@@ -161,11 +179,11 @@ const CreateOrderScreen = () => {
                 </View>
             </Modal>
         )
-    }, [isVisibleProvince, selectArea, data])
+    }, [isVisibleProvince, selectArea, data, stepArea])
 
     const onSelectPrivince = () => {
         setVisibleProvince(true);
-        getProvinceCloud();
+        selectArea(area);
     }
 
     return (
@@ -174,17 +192,20 @@ const CreateOrderScreen = () => {
                 onPress={onSelectPrivince}
             >
                 <TextInput
-                    value={area}
+                    value={area.name}
                     mode='outlined'
                     editable={false}
+                    numberOfLines={2}
+                    multiline
+
                     style={{
                         width: '100%',
-                        height: 60,
+                        height: area.name.length > 50 ? 80 : 60,
                         borderRadius: 16,
                         backgroundColor: area ? 'white' : Colors.border,
-                        marginTop: 50
+                        marginTop: 50,
                     }}
-                    placeholder="Khu vực"
+                    label="Khu vực"
                     activeOutlineColor={Colors.border}
                 />
             </TouchableOpacity>

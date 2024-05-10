@@ -1,19 +1,40 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import React, { } from 'react'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler } from 'react-native'
+import React, { useEffect } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import { NavigationConstants } from '../../services/navigation/NavigationConstants';
+import { Alert } from 'react-native';
+import CreateOrderScreen from '../createOrder/CreateOrderScreen';
 
 
 interface HomeProps {
     navigation: any
 }
 
-
 const screenWidth = Dimensions.get('window').width;
 
 const HomeScreen = (props: HomeProps) => {
 
     const { navigation } = props;
+
+
+
+
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', onPressBackEvent);
+        navigation.addListener('beforeRemove', (e: any) => {
+            navigation.dispatch(e.data.action)
+            return
+        })
+        return () => {
+            backHandler.remove();
+            // backNavigation.
+        }
+    }, [])
+
+    const onPressBackEvent = () => {
+        console.log("onPressBackEvent");
+        return true
+    }
 
     const onCreateOrder = () => {
         navigation.navigate(NavigationConstants.CREATE_ORDER)
