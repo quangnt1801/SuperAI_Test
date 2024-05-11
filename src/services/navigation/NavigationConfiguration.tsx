@@ -27,11 +27,7 @@ export const RootStack = () => {
                 name={NavigationConstants.HOME_SCREEN}
                 component={HomeScreen}
                 options={{
-                    title: "Trang chủ",
-                    headerStyle: {
-                        backgroundColor: Colors.error,
-                    },
-                    headerTintColor: 'white',
+                    headerShown: false
 
                 }}
             />
@@ -65,12 +61,13 @@ export const Authentication = () => {
                 name={NavigationConstants.LOGIN_SCREEN}
                 component={LoginScreen}
                 options={{
-                    title: "Đăng nhập",
-                    headerStyle: {
-                        backgroundColor: Colors.error,
-                    },
+                    // title: "Đăng nhập",
+                    // headerStyle: {
+                    //     backgroundColor: Colors.error,
+                    // },
 
-                    headerTintColor: 'white',
+                    // headerTintColor: 'white',
+                    headerShown: false
 
                 }}
             />

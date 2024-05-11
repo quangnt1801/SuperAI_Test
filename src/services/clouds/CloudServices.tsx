@@ -1,12 +1,8 @@
 import axios from "axios";
 import { CloudConstants } from "./CloudConstants";
 
-// var axios = require("axios");
-// var MockAdapter = require("axios-mock-adapter");
-
 const URL = "https://api.mysupership.vn";
-
-// var mock = new MockAdapter(axios);
+const LOCAL_URL = "http://192.168.1.252:3000"
 
 interface LOGIN {
     email: string,
@@ -18,12 +14,6 @@ export interface ParamArea {
     name: string,
     province?: string,
     district?: string
-}
-
-export const login = (config: LOGIN) => {
-    // mock.onPost("/foo").reply(function (config) {
-    //     return axios.get("/bar");
-    //   });
 }
 
 export const getProvince = () => {
@@ -53,11 +43,18 @@ export const getCommune = (code: number) => {
     return new Promise((resolve, reject) => {
         axios.get(`${URL}${CloudConstants.COMMUNE}?district=${code}`).then(async (response: any) => {
             resolve(response.data)
-
-
-
         }).catch((error: any) => {
             reject(error)
+        })
+    })
+}
+
+export const login = (param: any) => {
+    return new Promise((resolve, reject) => {
+        axios.post(`${LOCAL_URL}${CloudConstants.LOGIN}`, param).then(async (response: any) => {
+            resolve(response.data)
+        }).catch((error: any) => {
+            resolve(error)
         })
     })
 }
