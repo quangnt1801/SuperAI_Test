@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, BackHandler, StatusBar, Image, TextInput } from 'react-native'
 import React, { useEffect } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import { NavigationConstants } from '../../services/navigation/NavigationConstants';
-import { Alert } from 'react-native';
-import CreateOrderScreen from '../createOrder/CreateOrderScreen';
-
+import Icon from 'react-native-vector-icons/Ionicons';
+import IconFont from 'react-native-vector-icons/FontAwesome';
 
 interface HomeProps {
     navigation: any
@@ -44,12 +43,79 @@ const HomeScreen = (props: HomeProps) => {
     return (
         <View style={styles.flexView}>
             <View style={styles.container}>
-                <TouchableOpacity
-                    style={styles.btnCreate}
-                    onPress={onCreateOrder}
-                >
-                    <Text style={styles.txtCreate}>Tạo đơn hàng</Text>
-                </TouchableOpacity>
+                <StatusBar backgroundColor={Colors.error} />
+
+
+                <View style={styles.headerView}>
+                    <View style={styles.topView}>
+                        <Image source={require('../../assets/images/Logo.png')}
+                            style={{ width: 170, height: 50 }}
+                        />
+                        <View style={styles.rightTopView}>
+                            <TouchableOpacity
+                                style={styles.btnRightTop}
+                                activeOpacity={0.1}
+                            >
+                                <Icon name='settings-outline' size={28} color={'white'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btnRightTop}
+                            >
+                                <Icon name='notifications-outline' size={28} color={'white'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btnRightTop}
+                            >
+                                <Icon name='cog' size={28} color={'white'} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.inputSearchView}>
+                        <TextInput
+                            style={styles.inputSearch}
+                            placeholder='Tra cứu đơn hàng...'
+                        />
+                        <Icon name='search' size={30} style={styles.iconSearch} />
+                    </View>
+
+                    <View style={styles.btnTopFeatureView}>
+
+                        <TouchableOpacity style={styles.itemBtn}
+                            onPress={onCreateOrder}
+                        >
+                            <Image source={require('../../assets/images/Frame.png')}
+                                style={styles.iconBtn}
+                            />
+                            <Text style={styles.txtItemBtn}>Tạo đơn</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.itemBtn}>
+                            <Image source={require('../../assets/images/Order.png')}
+                                style={styles.iconBtn} />
+                            <Text style={styles.txtItemBtn}>Tạo đơn</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.itemBtn}>
+                            <Image source={require('../../assets/images/CastOrder.png')}
+                                style={styles.iconBtn} />
+                            <Text style={styles.txtItemBtn}>Tạo đơn</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.itemBtn}>
+                            <Image source={require('../../assets/images/Manager.png')}
+                                style={styles.iconBtn} />
+                            <Text style={styles.txtItemBtn}>Tạo đơn</Text>
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+
+                <View style={styles.buttonView}>
+
+                </View>
+
             </View>
 
         </View>
@@ -62,9 +128,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     container: {
-        width: screenWidth,
-        justifyContent: 'center',
-        paddingHorizontal: 12
+        flex: 1,
+        backgroundColor: Colors.error
+        // paddingHorizontal: 12
     },
 
     btnCreate: {
@@ -80,6 +146,80 @@ const styles = StyleSheet.create({
     txtCreate: {
         fontSize: 18,
         color: 'white'
+    },
+    headerView: {
+        width: '100%',
+        height: 284,
+        // borderWidth: 1,
+    },
+    topView: {
+        width: '100%',
+        height: 70,
+        paddingHorizontal: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    rightTopView: {
+        width: '60%',
+        height: '100%',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 20,
+        justifyContent: 'flex-end'
+    },
+    btnRightTop: {
+        width: 40, height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 60,
+        marginLeft: 12,
+        backgroundColor: 'rgba(230, 230, 230, 0.3)'
+    },
+    inputSearch: {
+        width: '100%',
+        height: 55,
+        paddingLeft: 54,
+        borderRadius: 60,
+        fontSize: 18,
+        backgroundColor: 'white',
+        marginTop: 20
+    },
+    inputSearchView: {
+        width: '90%',
+        height: 55,
+        alignSelf: 'center',
+    },
+    iconSearch: {
+        position: 'absolute',
+        top: 32, left: 16
+    },
+    btnTopFeatureView: {
+        width: "100%",
+        height: 100,
+        marginTop: 46,
+        paddingHorizontal: 30,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    itemBtn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 8
+    },
+    txtItemBtn: {
+        color: 'white',
+        fontSize: 16,
+        marginTop: 8
+    },
+    iconBtn: {
+        width: 66, height: 66
+    },
+    buttonView: {
+        flex: 3,
+        backgroundColor: 'white',
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40
     }
 });
 

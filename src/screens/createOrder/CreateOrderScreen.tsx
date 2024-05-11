@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, Dimensions } from 'react-native'
 import React, { useMemo, useRef, useState } from 'react'
 import { ParamArea, getDistrict, getProvince, getCommune } from '../../services/clouds/CloudServices';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFont from 'react-native-vector-icons/FontAwesome';
 import InputSearch from '../home/InputSearch';
 import { TextInput } from 'react-native-paper';
+import { Colors } from '../../services/utils/Colors';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -40,11 +40,14 @@ const CreateOrderScreen = () => {
         switch (stepArea) {
             case 'province':
                 getDistrictCloud(item.code);
+                console.log("Province", item);
+                setStepArea('district')
                 setArea({
                     name: `${item.name}`,
                     code: item.code
                 })
-                setStepArea('district')
+                // }
+
                 break;
             case 'district':
                 getCommuneCloud(item.code)
@@ -55,13 +58,15 @@ const CreateOrderScreen = () => {
                 })
                 break;
             case 'commune':
-                getCommuneCloud(item.code);
                 setArea({
                     name: `${item.name} / ${item.district} / ${item.province}`,
                     code: item.code
                 })
                 setVisibleProvince(!isVisibleProvince)
-                setStepArea('')
+
+                if (item.name && item.district) {
+                    setStepArea('')
+                }
                 break;
 
             default:
@@ -70,8 +75,6 @@ const CreateOrderScreen = () => {
                 break;
         }
     }
-
-
 
     const renderItem = (item: any) => {
         const itemData = item.item;
@@ -91,7 +94,6 @@ const CreateOrderScreen = () => {
 
     const onCloseProvince = () => {
         setVisibleProvince(!isVisibleProvince)
-
     }
 
     const handleSearch = (text: string) => {
@@ -179,7 +181,7 @@ const CreateOrderScreen = () => {
                 </View>
             </Modal>
         )
-    }, [isVisibleProvince, selectArea, data, stepArea])
+    }, [isVisibleProvince, selectArea, data, stepArea, dataProvince])
 
     const onSelectPrivince = () => {
         setVisibleProvince(true);
@@ -187,7 +189,9 @@ const CreateOrderScreen = () => {
     }
 
     return (
-        <View style={{ flex: 1, paddingHorizontal: 14 }}>
+        <View style={{
+            flex: 1, paddingHorizontal: 14, backgroundColor: 'white'
+        }}>
             <TouchableOpacity
                 onPress={onSelectPrivince}
             >
