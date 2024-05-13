@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SuperAI_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SuperAI_TestTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-SuperAI_Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SuperAI_Test.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0C80B921A6F3F58F76C31292 /* libPods-SuperAI_Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SuperAI_Test.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		6D058EBCD1041CCD679E8140 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7B116B1540C03D54E376085B /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-SuperAI_Test-SuperAI_TestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SuperAI_Test-SuperAI_TestTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		BE079DF42BEF4814006E4CDB /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE079DF32BEF4814006E4CDB /* libDoubleConversion.a */; };
-		BE079DF62BEF5166006E4CDB /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE079DF52BEF5166006E4CDB /* libDoubleConversion.a */; };
+		8EDF12BC50E148799DE4092F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */; };
+		BEB0058C2BF1238F00591AF3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058B2BF1238F00591AF3 /* Fonts */; };
+		BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */; };
+		BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058F2BF126D400591AF3 /* Ionicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +46,14 @@
 		5709B34CF0A7D63546082F79 /* Pods-SuperAI_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAI_Test.release.xcconfig"; path = "Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SuperAI_Test-SuperAI_TestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAI_Test-SuperAI_TestTests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SuperAI_Test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAI_Test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B116B1540C03D54E376085B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SuperAI_Test/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SuperAI_Test/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SuperAI_Test/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; path = "Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; sourceTree = "<group>"; };
-		BE079DF32BEF4814006E4CDB /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE079DF52BEF5166006E4CDB /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
+		BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB0058B2BF1238F00591AF3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = Fonts/FontAwesome.ttf; sourceTree = "<group>"; };
+		BEB0058F2BF126D400591AF3 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = Fonts/Ionicons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -58,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE079DF62BEF5166006E4CDB /* libDoubleConversion.a in Frameworks */,
 				7699B88040F8A987B510C191 /* libPods-SuperAI_Test-SuperAI_TestTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE079DF42BEF4814006E4CDB /* libDoubleConversion.a in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-SuperAI_Test.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +97,7 @@
 		13B07FAE1A68108700A75B9A /* SuperAI_Test */ = {
 			isa = PBXGroup;
 			children = (
+				BEB0058B2BF1238F00591AF3 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -102,7 +105,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
-				7B116B1540C03D54E376085B /* PrivacyInfo.xcprivacy */,
+				883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */,
 			);
 			name = SuperAI_Test;
 			sourceTree = "<group>";
@@ -110,8 +113,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE079DF52BEF5166006E4CDB /* libDoubleConversion.a */,
-				BE079DF32BEF4814006E4CDB /* libDoubleConversion.a */,
+				BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */,
+				BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-SuperAI_Test.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-SuperAI_Test-SuperAI_TestTests.a */,
@@ -129,6 +132,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BEB0058F2BF126D400591AF3 /* Ionicons.ttf */,
+				BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* SuperAI_Test */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SuperAI_TestTests */,
@@ -172,7 +177,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
 				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -194,7 +198,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -254,9 +257,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */,
+				BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				6D058EBCD1041CCD679E8140 /* PrivacyInfo.xcprivacy in Resources */,
+				8EDF12BC50E148799DE4092F /* PrivacyInfo.xcprivacy in Resources */,
+				BEB0058C2BF1238F00591AF3 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +271,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -275,26 +281,9 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
-		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -340,26 +329,9 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -369,7 +341,7 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAI_Test/Pods-SuperAI_Test-resources.sh\"\n";
 			showEnvVarsInLog = 0;
@@ -432,7 +404,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SuperAI_TestTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,9 +427,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 4FAH2J5BX7;
 				INFOPLIST_FILE = SuperAI_TestTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,16 +452,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4FAH2J5BX7;
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = SuperAI_Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -511,15 +480,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = SuperAI_Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -583,6 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../node_modules/react-native-splash-screen/ios";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD = "";
 				LDPLUSPLUS = "";
@@ -607,12 +574,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				USE_HERMES = true;
+				USE_HERMES = false;
 			};
 			name = Debug;
 		};
@@ -660,6 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../node_modules/react-native-splash-screen/ios";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD = "";
 				LDPLUSPLUS = "";
@@ -673,7 +640,6 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -684,12 +650,11 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				USE_HERMES = true;
+				USE_HERMES = false;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

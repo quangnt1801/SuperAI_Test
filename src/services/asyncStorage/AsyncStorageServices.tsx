@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorageConstants } from "./AsyncStorageConstants";
 import { AUTHENTICATION_STATE, INITIAL_AUTHENTICATION_STATE } from "../store/sagas/type";
+import EncryptedStorage from "react-native-encrypted-storage";
 
 
 const setItem = async (key: string, value: string) => {
@@ -20,12 +21,26 @@ const setItem = async (key: string, value: string) => {
 
 const AsyncStorageServices = {
     saveAuthentication(configuration: AUTHENTICATION_STATE) {
-        setItem(AsyncStorageConstants.AUTHENTICATION, JSON.stringify(configuration))
+
+        const key = AsyncStorageConstants.AUTHENTICATION;
+        const value = JSON.stringify(configuration)
+        try {
+            if (!value) {
+                console.log("Storing null value to AsyncStorage");
+                return false
+            }
+            console.log(`Saving: ${key} with value: ${value}`);
+            return EncryptedStorage.setItem(key, value)
+
+        } catch (e) {
+            console.log("Storing AsyncStorage item error");
+            return false
+        }
     },
 
     getAuthentication() {
         return new Promise((resolve, reject) => {
-            AsyncStorage.getItem(AsyncStorageConstants.AUTHENTICATION).then((value: any) => {
+            EncryptedStorage.getItem(AsyncStorageConstants.AUTHENTICATION).then((value: any) => {
                 console.log("getAuthentication: ", value);
 
                 if (value) {

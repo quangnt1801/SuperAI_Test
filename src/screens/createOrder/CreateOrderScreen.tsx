@@ -190,30 +190,118 @@ const CreateOrderScreen = () => {
 
     return (
         <View style={{
-            flex: 1, paddingHorizontal: 14, backgroundColor: 'white'
+            flex: 1, backgroundColor: Colors.error
         }}>
-            <TouchableOpacity
-                onPress={onSelectPrivince}
-            >
-                <TextInput
-                    value={area.name}
-                    mode='outlined'
-                    editable={false}
-                    numberOfLines={2}
-                    multiline
+            <View style={styles.container}>
+                <View style={styles.viewInfo}>
+                    <View style={{ marginTop: 12, borderBottomWidth: 1, borderColor: Colors.border, paddingBottom: 20, width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 16 }}>
+                        <IconFont name='location-arrow' size={26} color={Colors.bluePrimary} />
+                        <Text style={{ fontSize: 20, color: Colors.blackText, fontWeight: '700', marginLeft: 6 }}>Thông tin người nhận</Text>
+                    </View>
+                    <TouchableOpacity
+                        // onPress={onSelectPrivince}
+                        style={{ marginTop: 12, width: '94%' }}
+                    >
 
-                    style={{
-                        width: '100%',
-                        height: area.name.length > 50 ? 80 : 60,
-                        borderRadius: 16,
-                        backgroundColor: area ? 'white' : Colors.border,
-                        marginTop: 50,
-                    }}
-                    label="Khu vực"
-                    activeOutlineColor={Colors.border}
-                />
-            </TouchableOpacity>
-            {renderModalProvince}
+                        <TextInput
+                            // value={area.name}
+                            mode='outlined'
+                            editable={false}
+                            numberOfLines={2}
+                            multiline
+
+                            style={{
+                                width: '100%',
+                                height: area.name.length > 50 ? 80 : 60,
+                                borderRadius: 16,
+                                paddingLeft: 36,
+                                backgroundColor: area ? 'white' : Colors.border,
+                            }}
+                            label="Số điện thoại"
+                            activeOutlineColor={Colors.border}
+                        />
+                        <IconFont name='phone' size={26} style={styles.icon} />
+                        <IconFont name='chevron-down' size={26} style={[styles.iconDown]} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        // onPress={onSelectPrivince}
+                        style={{ marginTop: 6, width: '94%' }}
+                    >
+                        <TextInput
+                            // value={area.name}
+                            mode='outlined'
+                            editable={false}
+                            numberOfLines={2}
+                            multiline
+
+                            style={{
+                                width: '100%',
+                                height: area.name.length > 50 ? 80 : 60,
+                                borderRadius: 16,
+                                paddingLeft: 36,
+                                backgroundColor: area ? 'white' : Colors.border,
+
+                            }}
+                            label="Khu vực"
+                            activeOutlineColor={Colors.border}
+                        />
+                        <IconFont name='user' size={26} style={styles.icon} />
+                        <IconFont name='chevron-down' size={26} style={[styles.iconDown]} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        // onPress={onSelectPrivince}
+                        style={{ marginTop: 6, width: '94%' }}
+                    >
+                        <TextInput
+                            // value={area.name}
+                            mode='outlined'
+                            editable={false}
+                            numberOfLines={2}
+                            multiline
+
+                            style={{
+                                width: '100%',
+                                height: area.name.length > 50 ? 80 : 60,
+                                borderRadius: 16,
+                                paddingLeft: 36,
+                                backgroundColor: area ? 'white' : Colors.border,
+                            }}
+                            label="Khu vực"
+                            activeOutlineColor={Colors.border}
+                        />
+                        <Icon name='location-sharp' size={26} style={[styles.icon, { left: 17 }]} />
+                        <IconFont name='chevron-down' size={26} style={[styles.iconDown]} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={onSelectPrivince}
+                        style={{ marginTop: 6, width: '94%' }}
+                    >
+                        <TextInput
+                            value={area.name}
+                            mode='outlined'
+                            editable={false}
+                            numberOfLines={2}
+                            multiline
+
+                            style={{
+                                width: '100%',
+                                height: area.name.length > 30 ? 80 : 60,
+                                paddingRight: 20,
+                                borderRadius: 16,
+                                paddingLeft: 36,
+                                backgroundColor: area ? 'white' : Colors.border,
+                            }}
+                            label="Khu vực"
+                            activeOutlineColor={Colors.border}
+                        />
+                        <IconFont name='building' size={26} style={[styles.icon, { top: area.name.length > 30 ? 32 : 26 }]} />
+                        <IconFont name='chevron-down' size={26} style={[styles.iconDown]} />
+                    </TouchableOpacity>
+
+                </View>
+
+                {renderModalProvince}
+            </View>
         </View>
     )
 }
@@ -224,9 +312,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     container: {
-        width: screenWidth,
-        justifyContent: 'center',
-        paddingHorizontal: 12
+        flex: 1,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        backgroundColor: Colors.border,
     },
     itemView: {
         width: '100%',
@@ -327,6 +416,22 @@ const styles = StyleSheet.create({
     txtCreate: {
         fontSize: 18,
         color: 'white'
+    },
+    viewInfo: {
+        paddingVertical: 22,
+        width: '100%',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        backgroundColor: 'white',
+        alignItems: 'center'
+    },
+    icon: {
+        position: 'absolute',
+        top: 26, left: 20
+    },
+    iconDown: {
+        position: 'absolute',
+        top: 22, right: 20
     }
 });
 

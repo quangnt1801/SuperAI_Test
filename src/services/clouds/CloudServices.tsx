@@ -2,7 +2,7 @@ import axios from "axios";
 import { CloudConstants } from "./CloudConstants";
 
 const URL = "https://api.mysupership.vn";
-const LOCAL_URL = "http://192.168.1.252:3000"
+const LOCAL_URL = "http://192.168.250.174:3000"
 
 interface LOGIN {
     email: string,

@@ -4,6 +4,7 @@ import { Colors } from '../../services/utils/Colors';
 import { NavigationConstants } from '../../services/navigation/NavigationConstants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFont from 'react-native-vector-icons/FontAwesome';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface HomeProps {
     navigation: any
@@ -14,9 +15,6 @@ const screenWidth = Dimensions.get('window').width;
 const HomeScreen = (props: HomeProps) => {
 
     const { navigation } = props;
-
-
-
 
     useEffect(() => {
         const backHandler = BackHandler.addEventListener('hardwareBackPress', onPressBackEvent);
@@ -42,10 +40,8 @@ const HomeScreen = (props: HomeProps) => {
 
     return (
         <View style={styles.flexView}>
-            <View style={styles.container}>
-                <StatusBar backgroundColor={Colors.error} />
-
-
+            <StatusBar backgroundColor={Colors.error} />
+            <SafeAreaView style={styles.container}>
                 <View style={styles.headerView}>
                     <View style={styles.topView}>
                         <Image source={require('../../assets/images/Logo.png')}
@@ -116,8 +112,7 @@ const HomeScreen = (props: HomeProps) => {
 
                 </View>
 
-            </View>
-
+            </SafeAreaView>
         </View>
     )
 }
@@ -130,7 +125,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.error
-        // paddingHorizontal: 12
     },
 
     btnCreate: {
@@ -150,7 +144,6 @@ const styles = StyleSheet.create({
     headerView: {
         width: '100%',
         height: 284,
-        // borderWidth: 1,
     },
     topView: {
         width: '100%',
