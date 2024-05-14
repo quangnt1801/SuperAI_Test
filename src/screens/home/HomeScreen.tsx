@@ -16,6 +16,7 @@ const HomeScreen = (props: HomeProps) => {
 
     const { navigation } = props;
 
+
     useEffect(() => {
         const backHandler = BackHandler.addEventListener('hardwareBackPress', onPressBackEvent);
         navigation.addListener('beforeRemove', (e: any) => {
@@ -35,6 +36,10 @@ const HomeScreen = (props: HomeProps) => {
 
     const onCreateOrder = () => {
         navigation.navigate(NavigationConstants.CREATE_ORDER)
+    }
+
+    const onPrinterTharmal = () => {
+        navigation.navigate(NavigationConstants.PRINTER_THARMAL)
     }
 
 
@@ -86,10 +91,13 @@ const HomeScreen = (props: HomeProps) => {
                             <Text style={styles.txtItemBtn}>Tạo đơn</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.itemBtn}>
+                        <TouchableOpacity
+                            style={styles.itemBtn}
+                            onPress={onPrinterTharmal}
+                        >
                             <Image source={require('../../assets/images/Order.png')}
                                 style={styles.iconBtn} />
-                            <Text style={styles.txtItemBtn}>Tạo đơn</Text>
+                            <Text style={styles.txtItemBtn}>In Hoá Đơn</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.itemBtn}>

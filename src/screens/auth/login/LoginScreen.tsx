@@ -126,18 +126,26 @@ const LoginScreen = (props: LoginProps) => {
                         if (Platform.OS === 'ios') {
                             if (biometryType === 'FaceID') {
                                 console.log('FaceID is supported.');
+                                // handleLoginWithBiometric(biometryType)
+                                onLogin(authen)
+                                return
                             } else {
                                 console.log('TouchID is supported.');
+                                onLogin(authen)
+                                return
                             }
                         } else {
                             if (biometryType) {
                                 console.log('Finferprint is supported.');
-                                handleLoginWithBiometric(biometryType)
+                                // handleLoginWithBiometric(biometryType)
+                                onLogin(authen)
+                                return
                             }
                         }
                         console.log("Authentication Success", success, "biometryType:", biometryType);
                     }).catch((error: any) => {
                         console.log("Authentication Failed");
+
                     });
 
             }).catch((error) => {
@@ -146,35 +154,8 @@ const LoginScreen = (props: LoginProps) => {
             })
     }
 
-    const handleLoginWithBiometric = async (biometryType: any) => {
-
-        TouchID.authenticate('App Name Require TouchID for Verification ')
-            .then((success: any) => {
-                if (!success) {
-                    console.log("Authentication failed");
-                    return
-                }
-
-                if (Platform.OS === 'ios') {
-                    if (biometryType === 'FaceID') {
-                        console.log('FaceID is supported.');
-                    } else {
-                        console.log('TouchID is supported.');
-                    }
-                } else {
-                    if (biometryType) {
-                        console.log('Finferprint is supported.');
-                        onLogin(authen)
-                    }
-                }
-                console.log("Authentication Success", success, "biometryType:", biometryType);
-            }).catch((error: any) => {
-                console.log("Authentication Failed");
-            });
-
-    }
-
     const onLogin = (data: any) => {
+        console.log("@@@@@@@@@@@datadataLogin", data);
         if (Object.values(data).filter((item: any) => item === "").length > 0) {
             setMsgError('Vui lòng điền đầy đủ thông tin!')
             return
@@ -185,23 +166,27 @@ const LoginScreen = (props: LoginProps) => {
             return
         }
 
+        if (data.email !== 'quangnt1801' && data.password !== '12345678x@X') {
+            setMsgError('Tài khoản hoặc mật khẩu không đúng')
+            return
+        }
+
         setMsgError('')
 
-        login(data).then((response: any) => {
-
-            if (response.status === "Success") {
-                updateAuthen({
-                    email: data.email,
-                    password: data.password
-                })
-                navigateThenReset(navigation, NavigationConstants.HOME_SCREEN);
-            } else {
-                setMsgError('Thông tin đăng nhập không đúng!')
-            }
-        }).catch((error) => {
-            console.log("Login error:", error);
-
+        // login(data).then((response: any) => {
+        //     if (response.status === "Success") {
+        updateAuthen({
+            email: data.email,
+            password: data.password
         })
+        navigateThenReset(navigation, NavigationConstants.HOME_SCREEN);
+        //     } else {
+        //         setMsgError('Thông tin đăng nhập không đúng!')
+        //     }
+        // }).catch((error) => {
+        //     console.log("Login error:", error);
+
+        // })
     }
 
     return (

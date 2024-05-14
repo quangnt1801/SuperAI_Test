@@ -24,9 +24,12 @@ target 'SuperAI_Test' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+
   target 'SuperAI_TestTests' do
     inherit! :complete
     # Pods for testing
+#    pod 'rn-tsc-printer', :path => "../node_modules/rn-tsc-printer"
+    use_frameworks!
   end
 
   post_install do |installer|

@@ -2,7 +2,7 @@ import axios from "axios";
 import { CloudConstants } from "./CloudConstants";
 
 const URL = "https://api.mysupership.vn";
-const LOCAL_URL = "http://192.168.250.174:3000"
+const LOCAL_URL = "http://192.168.1.252:3000"
 
 interface LOGIN {
     email: string,
@@ -50,6 +50,8 @@ export const getCommune = (code: number) => {
 }
 
 export const login = (param: any) => {
+    console.log("@@@@@@@@@@@loginlogin", param);
+
     return new Promise((resolve, reject) => {
         axios.post(`${LOCAL_URL}${CloudConstants.LOGIN}`, param).then(async (response: any) => {
             resolve(response.data)

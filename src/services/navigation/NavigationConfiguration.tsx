@@ -4,6 +4,7 @@ import LoginScreen from "../../screens/auth";
 import HomeScreen from "../../screens/home";
 import { Colors } from "../utils/Colors";
 import CreateOrderScreen from "../../screens/createOrder/CreateOrderScreen";
+import PrinterThermalScreen from "../../screens/printerThermal/PrinterThermalScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -36,6 +37,20 @@ export const RootStack = () => {
                 component={CreateOrderScreen}
                 options={{
                     title: "Tạo đơn hàng",
+                    headerStyle: {
+                        backgroundColor: Colors.error,
+                    },
+
+                    headerTintColor: 'white',
+
+                }}
+            />
+
+            <Stack.Screen
+                name={NavigationConstants.PRINTER_THARMAL}
+                component={PrinterThermalScreen}
+                options={{
+                    title: "In hoá đơn",
                     headerStyle: {
                         backgroundColor: Colors.error,
                     },
