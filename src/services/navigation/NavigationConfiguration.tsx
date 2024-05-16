@@ -4,7 +4,7 @@ import LoginScreen from "../../screens/auth";
 import HomeScreen from "../../screens/home";
 import { Colors } from "../utils/Colors";
 import CreateOrderScreen from "../../screens/createOrder/CreateOrderScreen";
-import PrinterThermalScreen from "../../screens/printerThermal/PrinterThermalScreen";
+import PrinterThermalScreen from "../../screens/printerThermal";
 
 
 const Stack = createNativeStackNavigator();
@@ -49,15 +49,15 @@ export const RootStack = () => {
             <Stack.Screen
                 name={NavigationConstants.PRINTER_THARMAL}
                 component={PrinterThermalScreen}
-                options={{
-                    title: "In hoá đơn",
-                    headerStyle: {
-                        backgroundColor: Colors.error,
-                    },
+            // options={{
+            //     title: "In hoá đơn",
+            //     headerStyle: {
+            //         backgroundColor: Colors.error,
+            //     },
 
-                    headerTintColor: 'white',
+            //     headerTintColor: 'white',
 
-                }}
+            // }}
             />
         </Stack.Navigator>
     )

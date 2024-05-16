@@ -5,6 +5,6 @@ export enum NavigationConstants {
     HOME_SCREEN = "HOME_SCREEN",
     CREATE_ORDER = "CREATE_ORDER",
 
-    PRINTER_THARMAL = "PRINTER_THARMAL",
+    PRINTER_THARMAL = "PRINTER_THARMAL"
 
 }
