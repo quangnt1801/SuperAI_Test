@@ -69,19 +69,12 @@ export const Authentication = () => {
         <AuthStack.Navigator
             initialRouteName={NavigationConstants.LOGIN_SCREEN}
             screenOptions={{
-                // headerShown: false
             }}
         >
             <AuthStack.Screen
                 name={NavigationConstants.LOGIN_SCREEN}
                 component={LoginScreen}
                 options={{
-                    // title: "Đăng nhập",
-                    // headerStyle: {
-                    //     backgroundColor: Colors.error,
-                    // },
-
-                    // headerTintColor: 'white',
                     headerShown: false
 
                 }}

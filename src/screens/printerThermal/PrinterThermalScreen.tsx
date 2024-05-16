@@ -1,27 +1,60 @@
-import { View, Text, StyleSheet, useColorScheme, TouchableOpacity, Platform } from 'react-native';
-import ThermalPrinterModule from 'react-native-thermal-printer';
+import { View, Text, StyleSheet, useColorScheme, TouchableOpacity, Platform, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import TSCPrinter from 'rn-tsc-printer';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import RNFS from 'react-native-fs';
 
 const PrinterThermalScreen = () => {
+
+    const [filePath, setFilePath] = useState('')
+
+    useEffect(() => {
+        test()
+
+    }, [])
+
+
+    const test = async () => {
+        let downloadDir = RNFS.DownloadDirectoryPath;
+
+        if (Platform.OS === 'ios') {
+            downloadDir = RNFS.LibraryDirectoryPath + '/Download';
+        }
+        console.log('File font213123123.', downloadDir);
+        const fontFilePath = `${downloadDir}/Arial.ttf`;
+        const exists = await RNFS.exists(fontFilePath);
+        if (exists) {
+            console.log('File jahdjasjdasdas.', fontFilePath);
+            setFilePath(fontFilePath)
+            return;
+        } else {
+            console.log('File font không tồn tại.');
+            return null;
+        }
+    }
 
     const printer = new TSCPrinter({
         ip: "192.168.1.100",
         port: 9100,
-        width: 80,
+        width: 82,
         height: 50,
     });
 
     const onPrinterThermal = async () => {
         await printer.open()
         await printer.clear()
+        await printer.cmd('CLS')
         await printer.setup()
+        const qrCodeCommand = `
+            SIZE 2,2
+            QRCODE 20,70,L,3,A,0,"SuperAi | HDGS983262LM810002885"
+        `;
+        await printer.cmd(qrCodeCommand)
         await printer.barcode({
-            x: 20,
-            y: 20,
-            height: 80,
+            x: 120,
+            y: 70,
+            height: 100,
             narrow: 1,
             wide: 1,
             printText: true,
@@ -29,55 +62,57 @@ const PrinterThermalScreen = () => {
             type: 'EAN128',
             code: 'SuperAi | HDGS983262LM810002885'
         })
-        await printer.text({
-            x: 20,
-            y: 140,
-            font: '1',
-            rotation: 0,
-            text: 'Dia chi: Quan Binh Thanh, Tp Ho Chi Minh',
-            zoomX: 1,
-            zoomY: 1
-        })
-        await printer.text({
-            x: 20,
-            y: 160,
-            font: '1',
-            rotation: 0,
-            text: '350.000 VND, 089****801 - Quang',
-            zoomX: 1,
-            zoomY: 1
-        })
 
-        await printer.text({
-            x: 20,
-            y: 180,
-            font: '1',
-            rotation: 0,
-            text: 'DH cua shop: SuperAI',
-            zoomX: 1,
-            zoomY: 1
-        })
-        await printer.text({
+        await printer.windowfont({
             x: 20,
             y: 200,
-            font: '1',
-            rotation: 0,
-            text: 'Macbook Pro',
-            zoomX: 1,
-            zoomY: 1
+            size: 20,
+            path: filePath,
+            text: 'Địa chỉ: Quận Bình Thạnh, TP Hồ Chí Minh'
         })
-        await printer.qrcode({
-            cell: '1',
-            content: 'SuperAi | HDGS983262LM810002885',
-            ecc: 'L',
-            mask: '0',
-            mode: '1',
-            model: '2',
-            rotation: '0',
+
+        await printer.windowfont({
             x: 20,
-            y: 220
+            y: 230,
+            size: 20,
+            path: filePath,
+            text: '350.000 VNĐ, 089****801 - Quang'
         })
+
+        await printer.windowfont({
+            x: 20,
+            y: 260,
+            size: 20,
+            path: filePath,
+            text: 'ĐH của shop: SuperAI'
+        })
+
+        await printer.windowfont({
+            x: 20,
+            y: 290,
+            size: 20,
+            path: filePath,
+            text: 'Sản phẩm: Macbook Pro'
+        })
+
+        // const ttf = await printer.ttf('Arial.ttf')
+        // if (ttf) {
+        //     console.log("@@@@@@@@@@@@@ttfttf", ttf);
+
+
+
+        // }
+
+        //         const command = `
+        //     SIZE 1,1
+        //     TEXT 100,100,"Arial Unicode MS",0,1,1,"Chào thế giới"
+        //     PRINT 1,1
+        //   `;
+
+        //         printer.cmd(command)
+
         await printer.print(1, 1)
+        await printer.close()
     }
 
     return (
@@ -109,6 +144,24 @@ const PrinterThermalScreen = () => {
                 <Text style={styles.txtBtPrinter}>In hoá đơn</Text>
             </TouchableOpacity>
         </View>
+
+        // <View style={styles.container}>
+        //     {printers.map((printer: any) => (
+        //         <TouchableOpacity
+        //             key={printer.device_id}
+        //             onPress={() => connectPrinter(printer.host, printer.port)}
+        //             style={styles.button}
+        //         >
+        //             <Text>{`device_name: ${printer.device_name}, host: ${printer.host}, port: ${printer.port}`}</Text>
+        //         </TouchableOpacity>
+        //     ))}
+        //     <TouchableOpacity onPress={printTextTest} style={styles.button}>
+        //         <Text>Print Text</Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity onPress={printBillTest} style={styles.button}>
+        //         <Text>Print Bill Text</Text>
+        //     </TouchableOpacity>
+        // </View>
 
     )
 }
@@ -148,7 +201,18 @@ const styles = StyleSheet.create({
     textBill: {
         fontSize: 16,
         color: Colors.blackText,
-    }
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        margin: 10,
+        padding: 10,
+        backgroundColor: '#DDDDDD',
+        borderRadius: 5,
+    },
 });
 
 export default PrinterThermalScreen
