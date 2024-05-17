@@ -1,141 +1,246 @@
-import { View, Text, StyleSheet, useColorScheme, TouchableOpacity, Platform, Alert } from 'react-native';
-import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Platform, FlatList } from 'react-native';
+import React, { useState } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import TSCPrinter from 'rn-tsc-printer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFS from 'react-native-fs';
 
+interface listBill {
+    barCode: string,
+    qrCode: string,
+    location: string,
+    productType: string,
+    classificationCode: string,
+    phoneUser: string,
+    recipientName: string,
+    shopName: string,
+}
+
 const PrinterThermalScreen = () => {
 
-    const [filePath, setFilePath] = useState('')
+    const [listBill, setListBill] = useState<listBill[]>([
+        {
+            barCode: "BEST | 84857627495046",
+            qrCode: "813464520",
+            location: "24 Nguyễn Chánh Sắt, P.13, Q. Tân Bình, Hcm, Phường 13, Quận Tân Bình, Hồ Chí Minh",
+            classificationCode: "SG071-00-003-02",
+            phoneUser: '032****775',
+            recipientName: 'Ng. Nhận: Hằng',
+            shopName: 'THẢO HƯƠNG SPAI',
+            productType: "QUẦN ÁO, MỸ PHẨM"
+        },
+        {
+            barCode: "BEST | 84857512884224",
+            qrCode: "813106845",
+            location: "32 Thân Nhân Trung An Giang, Phường Đông Xuyên, Thành phố Long Xuyên, An Giang",
+            classificationCode: "CT176-00-034-02",
+            phoneUser: '091****796',
+            recipientName: 'Ng. Nhận: Thảo',
+            shopName: 'THẢO HƯƠNG SPAI',
+            productType: "QUẦN ÁO, MỸ PHẨM"
+        },
+    ])
 
-    useEffect(() => {
-        test()
-
-    }, [])
-
-
-    const test = async () => {
+    const getPathTextFont = async (fontName: string): Promise<string> => {
         let downloadDir = RNFS.DownloadDirectoryPath;
+        let pathFont: String = ''
 
         if (Platform.OS === 'ios') {
             downloadDir = RNFS.LibraryDirectoryPath + '/Download';
         }
-        console.log('File font213123123.', downloadDir);
-        const fontFilePath = `${downloadDir}/Arial.ttf`;
-        const exists = await RNFS.exists(fontFilePath);
-        if (exists) {
+
+        const fontFilePath = `${downloadDir}/${fontName}.ttf`;
+        const isExists = await RNFS.exists(fontFilePath);
+        if (isExists) {
             console.log('File jahdjasjdasdas.', fontFilePath);
-            setFilePath(fontFilePath)
-            return;
+            return fontFilePath
         } else {
-            console.log('File font không tồn tại.');
-            return null;
+            console.log('File font not exists.');
+            return pathFont = ''
+
         }
     }
 
     const printer = new TSCPrinter({
         ip: "192.168.1.100",
         port: 9100,
-        width: 82,
+        width: 90,
         height: 50,
     });
 
+    const insertLineBreaks = (text: string) => {
+
+        const maxLength = 380;
+        const charLength = 7;
+        let currentLength = 0;
+        let lastSpaceIndex = -1;
+        let result = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            currentLength += charLength;
+
+            if (char === ' ') {
+                lastSpaceIndex = i;
+            }
+
+            if (currentLength > maxLength) {
+                if (lastSpaceIndex !== -1) {
+                    result = result.substring(0, lastSpaceIndex) + '\n' + result.substring(lastSpaceIndex + 1);
+                    currentLength = (i - lastSpaceIndex) * charLength;
+                    lastSpaceIndex = -1;
+                } else {
+                    result += '\n';
+                    currentLength = charLength;
+                }
+            }
+
+            result += char;
+        }
+
+        return result;
+    };
+
+
     const onPrinterThermal = async () => {
+        const fontArial = await getPathTextFont('Arial');
+        const fontArialBold = await getPathTextFont('arialceb')
+
         await printer.open()
         await printer.clear()
-        await printer.cmd('CLS')
         await printer.setup()
-        const qrCodeCommand = `
-            SIZE 2,2
-            QRCODE 20,70,L,3,A,0,"SuperAi | HDGS983262LM810002885"
-        `;
-        await printer.cmd(qrCodeCommand)
-        await printer.barcode({
-            x: 120,
-            y: 70,
-            height: 100,
-            narrow: 1,
-            wide: 1,
-            printText: true,
-            rotation: 0,
-            type: 'EAN128',
-            code: 'SuperAi | HDGS983262LM810002885'
-        })
-
-        await printer.windowfont({
-            x: 20,
-            y: 200,
-            size: 20,
-            path: filePath,
-            text: 'Địa chỉ: Quận Bình Thạnh, TP Hồ Chí Minh'
-        })
-
-        await printer.windowfont({
-            x: 20,
-            y: 230,
-            size: 20,
-            path: filePath,
-            text: '350.000 VNĐ, 089****801 - Quang'
-        })
-
-        await printer.windowfont({
-            x: 20,
-            y: 260,
-            size: 20,
-            path: filePath,
-            text: 'ĐH của shop: SuperAI'
-        })
-
-        await printer.windowfont({
-            x: 20,
-            y: 290,
-            size: 20,
-            path: filePath,
-            text: 'Sản phẩm: Macbook Pro'
-        })
-
-        // const ttf = await printer.ttf('Arial.ttf')
-        // if (ttf) {
-        //     console.log("@@@@@@@@@@@@@ttfttf", ttf);
 
 
+        for (const item of listBill) {
+            await printer.barcode({
+                x: 25,
+                y: 40,
+                height: 60,
+                narrow: 2,
+                wide: 1,
+                printText: true,
+                rotation: 0,
+                type: '128',
+                code: item.barCode
+            })
+            const qrCodeCommand = `
+                SIZE 5,2
+                QRCODE 450,80,L,3,A,0,"${item.qrCode}"
+            `;
+            await printer.cmd(qrCodeCommand)
 
-        // }
+            await printer.windowfont({
+                x: 440,
+                y: 155,
+                size: 18,
+                path: fontArial,
+                text: item.qrCode
+            })
 
-        //         const command = `
-        //     SIZE 1,1
-        //     TEXT 100,100,"Arial Unicode MS",0,1,1,"Chào thế giới"
-        //     PRINT 1,1
-        //   `;
+            await printer.windowfont({
+                x: 120,
+                y: 155,
+                size: 28,
+                path: fontArialBold,
+                text: item.classificationCode
+            })
 
-        //         printer.cmd(command)
+            await printer.windowfont({
+                x: 14,
+                y: 220,
+                size: 18,
+                path: fontArial,
+                text: insertLineBreaks(item.location)
+            })
+            18
+            const textLines = [
+                { text: `${item.phoneUser} - `, font: fontArial, bold: false },
+                { text: item.recipientName, font: fontArialBold, bold: true },
+                { text: '- ĐH của shop ', font: fontArial, bold: false },
+                { text: item.shopName, font: fontArialBold, bold: true },
+            ];
 
-        await printer.print(1, 1)
+            let currentX = 14;
+            for (const line of textLines) {
+                await printer.windowfont({
+                    x: currentX,
+                    y: 280,
+                    size: 18,
+                    path: line.font,
+                    text: line.text
+                });
+
+                currentX += line.text.length * 9;
+            }
+
+
+            await printer.windowfont({
+                x: 14,
+                y: 320,
+                size: 18,
+                path: fontArial,
+                text: `SP Cần Giao: ${item.productType}`
+            })
+
+            await printer.windowfont({
+                x: 14,
+                y: 346,
+                size: 18,
+                path: fontArialBold,
+                text: `KHÔNG GIAO ĐƯỢC, GỌI NGAY 0902644227. CẢM ƠN AE SHIPPER.`
+            })
+
+            await printer.windowfont({
+                x: 14,
+                y: 372,
+                size: 18,
+                path: fontArial,
+                text: `Cho Thử Hàng`
+            })
+
+            await printer.print(1, 1)
+            await printer.clear()
+
+        }
+
         await printer.close()
+    }
+
+    const renderItem = ({ item, index }: { item: listBill, index: number }) => {
+        return (
+            <View style={{ width: '100%', marginBottom: 20, padding: 12, backgroundColor: "#DCDCDC", borderRadius: 12 }}>
+                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
+                    <Text style={styles.textBill}>{item.recipientName}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
+                    <Text style={styles.titleTxtBill}>phoneUser: </Text>
+                    <Text style={styles.textBill}>{item.phoneUser}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
+                    <Text style={styles.titleTxtBill}>Shop: </Text>
+                    <Text style={styles.textBill}>{item.shopName}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
+                    <Text style={styles.titleTxtBill}>San pham: </Text>
+                    <Text style={styles.textBill}>{item.productType}</Text>
+                </View>
+                <View style={{ marginBottom: 2 }}>
+                    <Text style={styles.titleTxtBill}>Địa chỉ: </Text>
+                    <Text style={styles.textBill}>{item.location}</Text>
+                </View>
+            </View>
+        )
     }
 
     return (
         <View style={styles.flexView}>
             <Text style={[styles.titleTxtBill, { marginTop: 20, marginBottom: 20, fontSize: 22 }]}>Thông tin hoá đơn</Text>
-            <View>
-                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
-                    <Text style={styles.titleTxtBill}>Dia Chi: </Text>
-                    <Text style={styles.textBill}>Quan Binh Thanh, Tp Ho Chi Minh</Text>
-                </View>
-                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
-                    <Text style={styles.titleTxtBill}>Thong tin: </Text>
-                    <Text style={styles.textBill}>350.000 VND 089****801 - Quang</Text>
-                </View>
-                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
-                    <Text style={styles.textBill}>DH cua shop SuperAI</Text>
-                </View>
-                <View style={{ flexDirection: 'row', marginBottom: 2 }}>
-                    <Text style={styles.titleTxtBill}>San pham: </Text>
-                    <Text style={styles.textBill}>Macbook Pro</Text>
-                </View>
-            </View>
-            {/* <Text>{textPrint.text}</Text> */}
+
+            <FlatList
+                data={listBill}
+                keyExtractor={(item: any) => item.qrCode}
+                renderItem={renderItem}
+            />
             <TouchableOpacity
                 style={styles.btnPrinter}
                 onPress={onPrinterThermal}
@@ -145,41 +250,19 @@ const PrinterThermalScreen = () => {
             </TouchableOpacity>
         </View>
 
-        // <View style={styles.container}>
-        //     {printers.map((printer: any) => (
-        //         <TouchableOpacity
-        //             key={printer.device_id}
-        //             onPress={() => connectPrinter(printer.host, printer.port)}
-        //             style={styles.button}
-        //         >
-        //             <Text>{`device_name: ${printer.device_name}, host: ${printer.host}, port: ${printer.port}`}</Text>
-        //         </TouchableOpacity>
-        //     ))}
-        //     <TouchableOpacity onPress={printTextTest} style={styles.button}>
-        //         <Text>Print Text</Text>
-        //     </TouchableOpacity>
-        //     <TouchableOpacity onPress={printBillTest} style={styles.button}>
-        //         <Text>Print Bill Text</Text>
-        //     </TouchableOpacity>
-        // </View>
-
     )
 }
-
-
-
 
 const styles = StyleSheet.create({
     flexView: {
         paddingHorizontal: 20,
         flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center'
     },
     btnPrinter: {
         width: 80,
         height: 80,
-        marginTop: 150,
+        position: 'absolute',
+        bottom: 50,
         backgroundColor: Colors.error,
         borderRadius: 12,
         alignItems: 'center',

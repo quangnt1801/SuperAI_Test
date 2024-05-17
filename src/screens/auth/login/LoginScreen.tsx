@@ -70,18 +70,18 @@ const LoginScreen = (props: LoginProps) => {
 
         let location = '';
 
-        switch (Platform.OS) {
-            case 'ios':
-                location = 'Setting > Accessibility > Face ID & Attention';
-                break
-            case 'android':
-                location = 'Setting > Security > Screen lock'
-                break
+        // switch (Platform.OS) {
+        //     case 'ios':
+        //         location = 'Setting > Accessibility > Face ID & Attention';
+        //         break
+        //     case 'android':
+        //         location = 'Setting > Security > Screen lock'
+        //         break
 
-            default:
-                location = ''
-                break
-        }
+        //     default:
+        //         location = ''
+        //         break
+        // }
 
         const message = `Để sử dụng , vui lòng bật tính năng này trong ${location}.`;
         Alert.alert("Xác nhận sinh trác chưa được bật", message, [
@@ -92,11 +92,11 @@ const LoginScreen = (props: LoginProps) => {
 
     const openSettingsss = () => {
 
-        if (Platform.OS === 'ios') {
-            Linking.openURL('app-settings:')
-        } else {
-            Linking.openSettings()
-        }
+        // if (Platform.OS === 'ios') {
+        //     Linking.openURL('app-settings:')
+        // } else {
+        //     Linking.openSettings()
+        // }
     };
 
     const checkSupportBiometric = async () => {
@@ -123,25 +123,25 @@ const LoginScreen = (props: LoginProps) => {
                             return
                         }
 
-                        if (Platform.OS === 'ios') {
-                            if (biometryType === 'FaceID') {
-                                console.log('FaceID is supported.');
-                                // handleLoginWithBiometric(biometryType)
-                                onLogin(authen)
-                                return
-                            } else {
-                                console.log('TouchID is supported.');
-                                onLogin(authen)
-                                return
-                            }
-                        } else {
-                            if (biometryType) {
-                                console.log('Finferprint is supported.');
-                                // handleLoginWithBiometric(biometryType)
-                                onLogin(authen)
-                                return
-                            }
-                        }
+                        // if (Platform.OS === 'ios') {
+                        //     if (biometryType === 'FaceID') {
+                        //         console.log('FaceID is supported.');
+                        //         // handleLoginWithBiometric(biometryType)
+                        //         onLogin(authen)
+                        //         return
+                        //     } else {
+                        //         console.log('TouchID is supported.');
+                        //         onLogin(authen)
+                        //         return
+                        //     }
+                        // } else {
+                        //     if (biometryType) {
+                        //         console.log('Finferprint is supported.');
+                        //         // handleLoginWithBiometric(biometryType)
+                        //         onLogin(authen)
+                        //         return
+                        //     }
+                        // }
                         console.log("Authentication Success", success, "biometryType:", biometryType);
                     }).catch((error: any) => {
                         console.log("Authentication Failed");
