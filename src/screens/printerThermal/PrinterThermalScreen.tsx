@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity, Platform, FlatList } from 'react-native';
-import React, { useState } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Platform, FlatList, NativeEventEmitter, NativeModules } from 'react-native';
+import React, { useEffect, useState } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import TSCPrinter from 'rn-tsc-printer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFS from 'react-native-fs';
+import TcpSocket from 'react-native-tcp-socket';
 
 interface listBill {
     barCode: string,
@@ -13,7 +14,7 @@ interface listBill {
     classificationCode: string,
     phoneUser: string,
     recipientName: string,
-    shopName: string,
+    shopName: string | any,
 }
 
 const PrinterThermalScreen = () => {
@@ -39,7 +40,7 @@ const PrinterThermalScreen = () => {
             shopName: 'THẢO HƯƠNG SPAI',
             productType: "QUẦN ÁO, MỸ PHẨM"
         },
-    ])
+    ]);
 
     const getPathTextFont = async (fontName: string): Promise<string> => {
         let downloadDir = RNFS.DownloadDirectoryPath;
@@ -67,6 +68,36 @@ const PrinterThermalScreen = () => {
         width: 90,
         height: 50,
     });
+
+    const printerWithIOS = async () => {
+        const socket = TcpSocket.createConnection({
+            host: '192.168.1.100',
+            port: 9100,
+        }, () => {
+            console.log('Connected to printer');
+
+            const tsplCommand = 'SIZE 50 mm, 30 mm\nTEXT 10,10,"4",0,1,1,"Hello TSPL Printer"\nPRINT\n';
+
+            const qrCodeCommand = `
+                SIZE 5,2
+                QRCODE 450,80,L,3,A,0,"123123"
+            `;
+
+            // Gửi lệnh TSPL đến máy in
+            socket.write(qrCodeCommand, 'ascii', (error) => {
+                if (error) {
+                    console.error('Error sending TSPL command:', error);
+                } else {
+                    console.log('TSPL command sent successfully');
+                }
+            });
+        });
+
+        socket.on('error', (error) => {
+            console.error('Socket error:', error);
+            // Handle error, possibly retry connection or notify the user
+        });
+    }
 
     const insertLineBreaks = (text: string) => {
 
@@ -101,8 +132,7 @@ const PrinterThermalScreen = () => {
         return result;
     };
 
-
-    const onPrinterThermal = async () => {
+    const printerWithAndroid = async () => {
         const fontArial = await getPathTextFont('Arial');
         const fontArialBold = await getPathTextFont('arialceb')
 
@@ -204,6 +234,15 @@ const PrinterThermalScreen = () => {
         }
 
         await printer.close()
+    }
+
+
+    const onPrinterThermal = async () => {
+        if (Platform.OS === 'ios') {
+            printerWithIOS();
+        } else {
+            printerWithAndroid();
+        }
     }
 
     const renderItem = ({ item, index }: { item: listBill, index: number }) => {
