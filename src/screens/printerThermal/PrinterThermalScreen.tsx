@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Platform, FlatList, NativeEventEmitter, NativeModules } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform, FlatList, NativeEventEmitter, NativeModules, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { Colors } from '../../services/utils/Colors';
 import TSCPrinter from 'rn-tsc-printer';
@@ -18,6 +18,8 @@ interface listBill {
 }
 
 const PrinterThermalScreen = () => {
+
+    const { TSCPrinterModule } = NativeModules;
 
     const [listBill, setListBill] = useState<listBill[]>([
         {
@@ -70,51 +72,13 @@ const PrinterThermalScreen = () => {
     });
 
     const printerWithIOS = async () => {
-        const socket = TcpSocket.createConnection({
-            host: '192.168.1.100',
-            port: 9100,
-        }, () => {
-            console.log('Connected to printer');
+        console.log("dsahdsadsada");
 
-            const tsplCommand = 'SIZE 50 mm, 30 mm\nTEXT 10,10,"4",0,1,1,"Hello TSPL Printer"\nPRINT\n';
-
-            const command = `^XA
-^CF0,2
-^CW1,1
-^LB
-^FO100,20
-^CT "Đây là nội dung in"
-^XZ`;
-
-            socket.write(command);
-
-            // const qrCodeCommand = `
-            //     SIZE 5,2
-            //     QRCODE 450,80,L,3,A,0,"123123"
-            // `;
-
-            // // Gửi lệnh TSPL đến máy in
-            // socket.write(qrCodeCommand, 'ascii', (error) => {
-            //     if (error) {
-            //         console.error('Error sending TSPL command:', error);
-            //     } else {
-            //         console.log('TSPL command sent successfully');
-            //     }
-            // });
+        TSCPrinterModule.initiatePrinting("192.168.1.100", [{ barcode: 'SuperAI' }], (response: string) => {
+            Alert.alert('Thông báo', response);
+            // setLoading(false);
         });
 
-        socket.on('error', (error) => {
-            console.error('Socket error:', error);
-            // Handle error, possibly retry connection or notify the user
-        });
-
-        // SocketModulerBridge.openPortWithIPAddress('192.168.1.100', 9100)
-        //     .then((result: any) => {
-        //         console.log("Port opened successfully:", result);
-        //     })
-        //     .catch((error: any) => {
-        //         console.error("Failed to open port:", error);
-        //     });
     }
 
     const insertLineBreaks = (text: string) => {
@@ -256,11 +220,11 @@ const PrinterThermalScreen = () => {
 
 
     const onPrinterThermal = async () => {
-        if (Platform.OS === 'ios') {
-            printerWithIOS();
-        } else {
-            printerWithAndroid();
-        }
+        printerWithIOS();
+        // if (Platform.OS === 'ios') {
+        // } else {
+        //     printerWithAndroid();
+        // }
     }
 
     const renderItem = ({ item, index }: { item: listBill, index: number }) => {
@@ -291,7 +255,7 @@ const PrinterThermalScreen = () => {
 
     return (
         <View style={styles.flexView}>
-            <Text style={[styles.titleTxtBill, { marginTop: 20, marginBottom: 20, fontSize: 22 }]}>Thông tin hoá đơn</Text>
+            <Text style={[styles.titleTxtBill, { marginTop: 20, marginBottom: 20, fontSize: 22 }]}>Thông tin hoá đơn 1231</Text>
 
             <FlatList
                 data={listBill}

@@ -25,7 +25,8 @@
 		BE0DF50A2BFB0B2D009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE0DF50C2BFB0B3E009AD880 /* tscswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; };
 		BE0DF50D2BFB0B3E009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE0DF5112BFB2740009AD880 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BE0DF5102BFB2740009AD880 /* main.jsbundle */; };
+		BE4C84552BFB7F9E00ABC0EC /* main.jsbundle in Sources */ = {isa = PBXBuildFile; fileRef = BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */; };
+		BE4C84572BFB7FF000ABC0EC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BE4C84562BFB7FF000ABC0EC /* main.jsbundle */; };
 		BEB0058C2BF1238F00591AF3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058B2BF1238F00591AF3 /* Fonts */; };
 		BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */; };
 		BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058F2BF126D400591AF3 /* Ionicons.ttf */; };
@@ -92,8 +93,10 @@
 		BE05D6EE2BFB569600DB7F97 /* SuperAI_Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAI_Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAI-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE0DF5022BFB09CC009AD880 /* tscswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tscswift.framework; sourceTree = "<group>"; };
-		BE0DF5102BFB2740009AD880 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		BE0DF5142BFB3E43009AD880 /* SuperAI_SDK.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = SuperAI_SDK.modulemap; sourceTree = "<group>"; };
+		BE4C84502BFB7CAA00ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		BE4C84562BFB7FF000ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0058B2BF1238F00591AF3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
@@ -181,13 +184,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BE4C84502BFB7CAA00ABC0EC /* main.jsbundle */,
+				BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */,
+				BE4C84562BFB7FF000ABC0EC /* main.jsbundle */,
 				BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */,
 				BE05D6EE2BFB569600DB7F97 /* SuperAI_Test-Bridging-Header.h */,
 				BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */,
 				BE05D6E92BFB542600DB7F97 /* RCTTSCPrinterModule.h */,
 				BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */,
 				BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */,
-				BE0DF5102BFB2740009AD880 /* main.jsbundle */,
 				BEB0058F2BF126D400591AF3 /* Ionicons.ttf */,
 				BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* SuperAI_Test */,
@@ -281,7 +286,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -324,7 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE0DF5112BFB2740009AD880 /* main.jsbundle in Resources */,
+				BE4C84572BFB7FF000ABC0EC /* main.jsbundle in Resources */,
 				BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */,
 				BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
@@ -449,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4C84552BFB7F9E00ABC0EC /* main.jsbundle in Sources */,
 				BE05D6E72BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */,
 				BE05D6EB2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
@@ -650,6 +657,7 @@
 				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -689,10 +697,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -738,6 +743,7 @@
 				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -769,12 +775,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SuperAI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -61,21 +61,21 @@ class TSCPrinterModule: NSObject {
         let config_name = data["config_name"] as? String ?? ""
         // Text and barcode printing commands
         let qrCommand = "QRCODE 480,30,M,3,A,0,\"\(qrcode)\"\r\n"
-        wireless.sendcommand(qrCommand);
+//        wireless.sendcommand(qrCommand);
         wireless.barcode("5", y: "30", barcodeType: "128", height: "75", readable: "0", rotation: "0", narrow: "2", wide: "3", code: barcode)
-        wireless.windowsfont(5, y: 105, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: nameBarcode)
-        wireless.windowsfont(450, y: 105, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: nameQrcode)
-        wireless.windowsfont(5, y: 125, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: carrier_route)
-        wireless.windowsfont(5, y: 145, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: addressDetail)
-        wireless.windowsfont(5, y: 165, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: addressDetail2)
-        wireless.windowsfont(5, y: 195, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: address)
-        wireless.windowsfont(5, y: 220, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: address2)
-        wireless.windowsfont(5, y: 250, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: collectionPhoneName)
-        wireless.windowsfont(5, y: 275, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: project)
-        wireless.windowsfont(5, y: 300, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: product)
-        wireless.windowsfont(5, y: 325, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: note)
-        wireless.windowsfont(5, y: 350, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: note2)
-        wireless.windowsfont(5, y: 375, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: config_name)
+//        wireless.windowsfont(5, y: 105, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: nameBarcode)
+//        wireless.windowsfont(450, y: 105, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: nameQrcode)
+//        wireless.windowsfont(5, y: 125, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: carrier_route)
+//        wireless.windowsfont(5, y: 145, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: addressDetail)
+//        wireless.windowsfont(5, y: 165, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: addressDetail2)
+//        wireless.windowsfont(5, y: 195, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: address)
+//        wireless.windowsfont(5, y: 220, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: address2)
+//        wireless.windowsfont(5, y: 250, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: collectionPhoneName)
+//        wireless.windowsfont(5, y: 275, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: project)
+//        wireless.windowsfont(5, y: 300, height: 21, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: product)
+//        wireless.windowsfont(5, y: 325, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: note)
+//        wireless.windowsfont(5, y: 350, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: note2)
+//        wireless.windowsfont(5, y: 375, height: 21, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: config_name)
         wireless.printlabel(1, copies: 1)
     }
 
