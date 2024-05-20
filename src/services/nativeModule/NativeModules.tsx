@@ -1,3 +1,5 @@
 import { NativeModules } from 'react-native';
+// const { SocketModule } = NativeModules;
 
-// import { TscPrinterModule } = NativeModules;
+// SocketModule.initializeSDK();
+// SocketModule.someMethod();

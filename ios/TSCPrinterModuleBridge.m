@@ -1,8 +1,8 @@
-//
-//  TSCPrinterModuleBridge.m
-//  SuperAI_Test
-//
-//  Created by Nguyễn Thành Quang on 20/05/2024.
-//
+// TSCPrinterModuleBridge.m
+#import <React/RCTBridgeModule.h>
 
-#import <Foundation/Foundation.h>
+@interface RCT_EXTERN_MODULE(TSCPrinterModule, NSObject)
+
+RCT_EXTERN_METHOD(initiatePrinting:(NSString *)ip labels:(NSArray *)labels callback:(RCTResponseSenderBlock)callback)
+
+@end

@@ -15,6 +15,17 @@
 		49582C0378E89A1E7EB26551 /* Pods_SuperAI_Test_SuperAI_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EF91E1395181532D9BF659 /* Pods_SuperAI_Test_SuperAI_TestTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8EDF12BC50E148799DE4092F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */; };
+		BE05D6E42BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */; };
+		BE05D6E52BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */; };
+		BE05D6E72BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */; };
+		BE05D6E82BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */; };
+		BE05D6EB2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */; };
+		BE05D6EC2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */; };
+		BE0DF5092BFB0B2D009AD880 /* tscswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; platformFilter = ios; };
+		BE0DF50A2BFB0B2D009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE0DF50C2BFB0B3E009AD880 /* tscswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; };
+		BE0DF50D2BFB0B3E009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE0DF5112BFB2740009AD880 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BE0DF5102BFB2740009AD880 /* main.jsbundle */; };
 		BEB0058C2BF1238F00591AF3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058B2BF1238F00591AF3 /* Fonts */; };
 		BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */; };
 		BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058F2BF126D400591AF3 /* Ionicons.ttf */; };
@@ -29,6 +40,31 @@
 			remoteInfo = SuperAI_Test;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE0DF50B2BFB0B2D009AD880 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE0DF50A2BFB0B2D009AD880 /* tscswift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE0DF50E2BFB0B3E009AD880 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE0DF50D2BFB0B3E009AD880 /* tscswift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* SuperAI_TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAI_TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +85,15 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SuperAI_Test/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SuperAI_Test/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; path = "Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSCPrinterModule.swift; sourceTree = "<group>"; };
+		BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSCPrinterModuleBridge.m; sourceTree = "<group>"; };
+		BE05D6E92BFB542600DB7F97 /* RCTTSCPrinterModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTTSCPrinterModule.h; sourceTree = "<group>"; };
+		BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTTSCPrinterModule.m; sourceTree = "<group>"; };
+		BE05D6EE2BFB569600DB7F97 /* SuperAI_Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAI_Test-Bridging-Header.h"; sourceTree = "<group>"; };
+		BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAI-Bridging-Header.h"; sourceTree = "<group>"; };
+		BE0DF5022BFB09CC009AD880 /* tscswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tscswift.framework; sourceTree = "<group>"; };
+		BE0DF5102BFB2740009AD880 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		BE0DF5142BFB3E43009AD880 /* SuperAI_SDK.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = SuperAI_SDK.modulemap; sourceTree = "<group>"; };
 		BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0058B2BF1238F00591AF3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
@@ -63,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49582C0378E89A1E7EB26551 /* Pods_SuperAI_Test_SuperAI_TestTests.framework in Frameworks */,
+				BE0DF5092BFB0B2D009AD880 /* tscswift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-SuperAI_Test.a in Frameworks */,
+				BE0DF50C2BFB0B3E009AD880 /* tscswift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +160,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE0DF5132BFB3E1D009AD880 /* Headers */,
+				BE0DF5022BFB09CC009AD880 /* tscswift.framework */,
 				BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */,
 				BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
@@ -132,6 +181,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */,
+				BE05D6EE2BFB569600DB7F97 /* SuperAI_Test-Bridging-Header.h */,
+				BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */,
+				BE05D6E92BFB542600DB7F97 /* RCTTSCPrinterModule.h */,
+				BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */,
+				BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */,
+				BE0DF5102BFB2740009AD880 /* main.jsbundle */,
 				BEB0058F2BF126D400591AF3 /* Ionicons.ttf */,
 				BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* SuperAI_Test */,
@@ -166,6 +222,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE0DF5132BFB3E1D009AD880 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				BE0DF5142BFB3E43009AD880 /* SuperAI_SDK.modulemap */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,6 +242,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				3AAA21FD40202C0BE2AADD43 /* [CP] Embed Pods Frameworks */,
+				BE0DF50B2BFB0B2D009AD880 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +264,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				BE0DF50E2BFB0B3E009AD880 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,10 +285,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 1530;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
@@ -257,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0DF5112BFB2740009AD880 /* main.jsbundle in Resources */,
 				BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */,
 				BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
@@ -371,6 +439,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* SuperAI_TestTests.m in Sources */,
+				BE05D6EC2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */,
+				BE05D6E52BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */,
+				BE05D6E82BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,8 +449,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE05D6E72BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */,
+				BE05D6EB2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				BE05D6E42BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +472,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-SuperAI_Test-SuperAI_TestTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 4FAH2J5BX7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -417,6 +498,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SuperAI_TestTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAI_Test.app/SuperAI_Test";
 			};
 			name = Debug;
@@ -425,8 +509,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 4FAH2J5BX7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SuperAI_TestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -441,6 +532,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SuperAI_TestTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAI_Test.app/SuperAI_Test";
 			};
 			name = Release;
@@ -454,11 +547,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4FAH2J5BX7;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SuperAI_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -467,6 +568,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SuperAI_Test;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SuperAI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -480,11 +583,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4FAH2J5BX7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SuperAI_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -493,6 +607,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SuperAI_Test;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SuperAI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -502,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -578,6 +695,9 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SuperAI-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				USE_HERMES = false;
 			};
 			name = Debug;
@@ -586,6 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -654,6 +775,9 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "SuperAI-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				USE_HERMES = false;
 				VALIDATE_PRODUCT = YES;
 			};

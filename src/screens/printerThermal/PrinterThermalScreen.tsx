@@ -78,25 +78,43 @@ const PrinterThermalScreen = () => {
 
             const tsplCommand = 'SIZE 50 mm, 30 mm\nTEXT 10,10,"4",0,1,1,"Hello TSPL Printer"\nPRINT\n';
 
-            const qrCodeCommand = `
-                SIZE 5,2
-                QRCODE 450,80,L,3,A,0,"123123"
-            `;
+            const command = `^XA
+^CF0,2
+^CW1,1
+^LB
+^FO100,20
+^CT "Đây là nội dung in"
+^XZ`;
 
-            // Gửi lệnh TSPL đến máy in
-            socket.write(qrCodeCommand, 'ascii', (error) => {
-                if (error) {
-                    console.error('Error sending TSPL command:', error);
-                } else {
-                    console.log('TSPL command sent successfully');
-                }
-            });
+            socket.write(command);
+
+            // const qrCodeCommand = `
+            //     SIZE 5,2
+            //     QRCODE 450,80,L,3,A,0,"123123"
+            // `;
+
+            // // Gửi lệnh TSPL đến máy in
+            // socket.write(qrCodeCommand, 'ascii', (error) => {
+            //     if (error) {
+            //         console.error('Error sending TSPL command:', error);
+            //     } else {
+            //         console.log('TSPL command sent successfully');
+            //     }
+            // });
         });
 
         socket.on('error', (error) => {
             console.error('Socket error:', error);
             // Handle error, possibly retry connection or notify the user
         });
+
+        // SocketModulerBridge.openPortWithIPAddress('192.168.1.100', 9100)
+        //     .then((result: any) => {
+        //         console.log("Port opened successfully:", result);
+        //     })
+        //     .catch((error: any) => {
+        //         console.error("Failed to open port:", error);
+        //     });
     }
 
     const insertLineBreaks = (text: string) => {

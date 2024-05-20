@@ -1131,8 +1131,7 @@ PODS:
     - React-logger (= 0.74.1)
     - React-perflogger (= 0.74.1)
     - React-utils (= 0.74.1)
-  - rn-tsc-printer (0.1.6):
-    - React
+  - rn-tsc-printer (0.1.6)
   - RNCAsyncStorage (1.23.1):
     - React-Core
   - RNFS (2.20.0):
@@ -1443,7 +1442,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: f12f5835c8515944a15e9e748d0f157993ebbab9
   React-utils: 7d0b70b2f4ba6795ab6bac9419155df58a2d5cb7
   ReactCommon: c4278abb4fdef5568fd9023d691bd2ff024c1b09
-  rn-tsc-printer: 1712073c2db52685e5e9a1e7174e433e03cc03eb
+  rn-tsc-printer: fff18bf0d336fa10002e4078f1fd066f925d96cc
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNScreens: 4e9248a76e35421013de772f5fefa73d7b039d05
@@ -1452,6 +1451,6 @@ SPEC CHECKSUMS:
   TouchID: ba4c656d849cceabc2e4eef722dea5e55959ecf4
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
-PODFILE CHECKSUM: aba20851976a4611aaf4255e20e0a659dc5dea7d
+PODFILE CHECKSUM: b5b2fd1ca039b2651ac060d3f9261f09e88d9783
 
 COCOAPODS: 1.15.2

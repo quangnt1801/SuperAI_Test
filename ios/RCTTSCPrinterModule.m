@@ -1,8 +1,7 @@
-//
-//  RCTTSCPrinterModule.m
-//  SuperAI_Test
-//
-//  Created by Nguyễn Thành Quang on 20/05/2024.
-//
+#import "RCTTSCPrinterModule.h"
+//#import "superAI-Swift.h"
 
-#import <Foundation/Foundation.h>
+@implementation RCTTSCPrinterModule
+
+RCT_EXPORT_MODULE(RTCTSCPrinterModule);
+@end

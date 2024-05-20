@@ -5,8 +5,4 @@
 //  Created by Nguyễn Thành Quang on 20/05/2024.
 //
 
-#ifndef SuperAI_Test_Bridging_Header_h
-#define SuperAI_Test_Bridging_Header_h
-
-
-#endif /* SuperAI_Test_Bridging_Header_h */
+#import <React/RCTBridgeModule.h>
