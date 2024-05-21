@@ -72,12 +72,40 @@ const PrinterThermalScreen = () => {
     });
 
     const printerWithIOS = async () => {
-        console.log("dsahdsadsada");
+        console.log("Printer@123");
 
-        TSCPrinterModule.initiatePrinting("192.168.1.100", [{ barcode: 'SuperAI' }], (response: string) => {
-            Alert.alert('Thông báo', response);
-            // setLoading(false);
-        });
+
+        for (const item of listBill) {
+
+            TSCPrinterModule.initiatePrinting("192.168.1.100", [{
+                barcode: item.barCode,
+                qrcode: item.qrCode,
+                labelBarcode: item.barCode,
+                labelQrcode: item.qrCode,
+                classificationCode: item.classificationCode,
+                address: insertLineBreaks(item.location),
+                infoShipping: insertLineBreaks(`${item.phoneUser} + ${item.recipientName} - ĐH của shop ${item.shopName}`),
+                infoProduct: `SP Cần Giao: ${item.productType}`,
+                contact: insertLineBreaks("KHÔNG GIAO ĐƯỢC, GỌI NGAY 0902644227. CẢM ƠN AE SHIPPER.")
+            }], (response: string) => {
+                Alert.alert('Thông báo', response);
+
+            });
+        }
+
+        // TSCPrinterModule.initiatePrinting("192.168.1.100", [{
+        //     barcode: 'BEST | 84857512884224',
+        //     qrcode: "813106845",
+        //     labelBarcode: "BEST | 84857512884224",
+        //     labelQrcode: "813106845",
+        //     classificationCode: "CT176-00-034-02",
+        //     address: '32 Thân Nhân Trung An Giang, Phường Đông Xuyên,\nThành phố Long Xuyên, An Giang',
+        //     infoShipping: "032****775 - Ng. Nhận: Hằng - ĐH của shop THẢO HƯƠNG SPAI",
+        //     infoProduct: "SP Cần Giao: QUẦN ÁO , MỸ PHẨM"
+        // }], (response: string) => {
+        //     Alert.alert('Thông báo', response);
+        //     // setLoading(false);
+        // });
 
     }
 

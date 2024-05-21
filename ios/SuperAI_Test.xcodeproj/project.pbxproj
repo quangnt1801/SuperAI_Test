@@ -15,6 +15,7 @@
 		49582C0378E89A1E7EB26551 /* Pods_SuperAI_Test_SuperAI_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EF91E1395181532D9BF659 /* Pods_SuperAI_Test_SuperAI_TestTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8EDF12BC50E148799DE4092F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */; };
+		BE03E1832BFCAF9B00454B97 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BE03E1822BFCAF9B00454B97 /* main.jsbundle */; };
 		BE05D6E42BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */; };
 		BE05D6E52BFB53CC00DB7F97 /* TSCPrinterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */; };
 		BE05D6E72BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */; };
@@ -25,8 +26,6 @@
 		BE0DF50A2BFB0B2D009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE0DF50C2BFB0B3E009AD880 /* tscswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; };
 		BE0DF50D2BFB0B3E009AD880 /* tscswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE0DF5022BFB09CC009AD880 /* tscswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE4C84552BFB7F9E00ABC0EC /* main.jsbundle in Sources */ = {isa = PBXBuildFile; fileRef = BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */; };
-		BE4C84572BFB7FF000ABC0EC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BE4C84562BFB7FF000ABC0EC /* main.jsbundle */; };
 		BEB0058C2BF1238F00591AF3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058B2BF1238F00591AF3 /* Fonts */; };
 		BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058D2BF126C000591AF3 /* FontAwesome.ttf */; };
 		BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB0058F2BF126D400591AF3 /* Ionicons.ttf */; };
@@ -86,6 +85,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SuperAI_Test/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		883962296CF32B9349868726 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SuperAI_Test/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; path = "Target Support Files/Pods-SuperAI_Test-SuperAI_TestTests/Pods-SuperAI_Test-SuperAI_TestTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE03E13A2BFC52D000454B97 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		BE03E1822BFCAF9B00454B97 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		BE05D6E32BFB53CC00DB7F97 /* TSCPrinterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSCPrinterModule.swift; sourceTree = "<group>"; };
 		BE05D6E62BFB53F400DB7F97 /* TSCPrinterModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSCPrinterModuleBridge.m; sourceTree = "<group>"; };
 		BE05D6E92BFB542600DB7F97 /* RCTTSCPrinterModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTTSCPrinterModule.h; sourceTree = "<group>"; };
@@ -94,9 +95,6 @@
 		BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAI-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE0DF5022BFB09CC009AD880 /* tscswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tscswift.framework; sourceTree = "<group>"; };
 		BE0DF5142BFB3E43009AD880 /* SuperAI_SDK.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = SuperAI_SDK.modulemap; sourceTree = "<group>"; };
-		BE4C84502BFB7CAA00ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		BE4C84562BFB7FF000ABC0EC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		BE75BEEE2BF0F5E400B21336 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB0058B2BF1238F00591AF3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
@@ -163,6 +161,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE03E13A2BFC52D000454B97 /* main.jsbundle */,
 				BE0DF5132BFB3E1D009AD880 /* Headers */,
 				BE0DF5022BFB09CC009AD880 /* tscswift.framework */,
 				BE75BEF02BF0F5F600B21336 /* libReact-hermes.a */,
@@ -184,9 +183,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				BE4C84502BFB7CAA00ABC0EC /* main.jsbundle */,
-				BE4C84542BFB7F9E00ABC0EC /* main.jsbundle */,
-				BE4C84562BFB7FF000ABC0EC /* main.jsbundle */,
+				BE03E1822BFCAF9B00454B97 /* main.jsbundle */,
 				BE05D6EF2BFB56C100DB7F97 /* SuperAI-Bridging-Header.h */,
 				BE05D6EE2BFB569600DB7F97 /* SuperAI_Test-Bridging-Header.h */,
 				BE05D6EA2BFB545500DB7F97 /* RCTTSCPrinterModule.m */,
@@ -330,7 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4C84572BFB7FF000ABC0EC /* main.jsbundle in Resources */,
+				BE03E1832BFCAF9B00454B97 /* main.jsbundle in Resources */,
 				BEB005902BF126D400591AF3 /* Ionicons.ttf in Resources */,
 				BEB0058E2BF126C000591AF3 /* FontAwesome.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
@@ -455,7 +452,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4C84552BFB7F9E00ABC0EC /* main.jsbundle in Sources */,
 				BE05D6E72BFB53F400DB7F97 /* TSCPrinterModuleBridge.m in Sources */,
 				BE05D6EB2BFB545500DB7F97 /* RCTTSCPrinterModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
