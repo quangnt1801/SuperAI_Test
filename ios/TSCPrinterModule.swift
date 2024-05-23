@@ -13,56 +13,128 @@ class TSCPrinterModule: NSObject {
         let ip = ip as CFString
         let port = 9100
         var attempts = 0
-        while attempts < 15 {  // Retry up to 15 times
+        while attempts < 3 {  // Retry up to 3 times
             let result = wireless.openport(ip, portnumber: UInt32(port))
             if result != 1 {
-                // print("Attempt \(attempts+1): Failed to open port to printer.")
                 attempts += 1
-                sleep(1)  // Wait 1 second before retrying
+                usleep(500_000)  // Wait 0.5 second before retrying
             } else {
-                // print("Connection to printer opened successfully.")
                 isConnected = true // Update connection status
                 completion(true)
                 return
             }
         }
-//        wireless.closeport(4)
-        // print("Failed to open connection after 15 attempts.")
-        completion(false)
-    }
+           print("Failed to open connection after 3 attempts.")
+          completion(false)
+        }
 
     // Setup printer configurations
     func setupPrinter() {
-        wireless.sendcommand("DIRECTION 1\r\n")
-        wireless.sendcommand("SIZE 90 mm, 50 mm\r\n")
-        wireless.sendcommand("SPEED 12\r\n")
-        wireless.sendcommand("DENSITY 10\r\n")
-        wireless.sendcommand("GAP 2 mm, 0 mm\r\n")
-        wireless.clearBuffer()
+      let commands = [
+              "DIRECTION 1\r\n",
+              "SIZE 90 mm, 50 mm\r\n",
+              "SPEED 12\r\n",
+              "DENSITY 10\r\n",
+              "GAP 2 mm, 0 mm\r\n"
+          ]
+          for command in commands {
+              wireless.sendcommand(command)
+          }
+          wireless.clearBuffer()
     }
   
-  func horizontalDash(numberDashes: Int, x: Int, y: Int) {
-    let numberOfDashes = numberDashes // Số lượng dấu gạch ngang, điều chỉnh theo nhu cầu của bạn
-    let dashLine = String(repeating: "-", count: numberOfDashes)
-    wireless.windowsfont(x, y: y, height: 22, rotation: 0, style: 4, withUnderline: 0, fontName: "Arial", content: dashLine)
+  let SIZE_PADDING: Double = 50;
+  
+  func narrowBarcode(carrierAlias: String) -> String {
+    switch carrierAlias {
+    case "BEST":
+      return "3.8"
+      
+    case "GHN":
+      return "3.8"
+
+    case "VTP":
+      return "2.9"
+
+    case "NJV":
+      return "3.4"
+
+    case "SPX":
+      return "2.9"
+      
+    default:
+      return "2"
+
+    }
   }
   
-  func verticalDash(numberOfLines: Int) -> String {
-    let yIncrement: Int = 10 // Khoảng cách Y giữa mỗi dấu |
-    var content: String = "|"
-    for i in 1..<numberOfLines {
-            content += "\n|"
-        }
-    return content
+  func paddingWidthBarcode(carrier: String) -> String {
+    switch carrier {
+    case "BEST":
+      return String(SIZE_PADDING * 1.2)
+      
+    case "GHN":
+      return String(SIZE_PADDING)
+
+    case "VTP":
+      return String(SIZE_PADDING * 1.7)
+
+    case "NJV":
+      return String(SIZE_PADDING * 0.8)
+
+    case "SPX":
+      return String(SIZE_PADDING * 1.3)
+      
+    default:
+      return String(SIZE_PADDING)
+      
+    }
   }
   
-  func isTextLengthExceedingLimit(text: String) -> Bool {
-    let characterWidth: Int = 7;
-    let maxLength: Int = 380;
+  func paddingWidthTxtBarCode(carrierAlias: String) -> Int {
+    switch carrierAlias {
+    case "BEST":
+      return Int(SIZE_PADDING * 1.4)
+      
+    case "GHN":
+      return Int(SIZE_PADDING * 2.3)
+
+    case "VTP":
+      return Int(SIZE_PADDING * 2)
+
+    case "NJV":
+      return Int(SIZE_PADDING * 2.1)
+
+    case "SPX":
+      return Int(SIZE_PADDING)
+      
+    default:
+      return 85
+      
+    }
+  }
+  
+    func horizontalDash(numberDashes: Int, x: Int, y: Int)-> String {
+      let dashLine = String(repeating: "-", count: numberDashes)
+      return dashLine
+//      wireless.windowsfont(x, y: y, height: 22, rotation: 0, style: 4, withUnderline: 0, fontName: "Arial", content: dashLine)
+    }
+  
+    func verticalDash(numberOfLines: Int) -> String {
+      var content: String = "|"
+      for i in 1..<numberOfLines {
+              content += "\n|"
+          }
+      return content
+    }
     
-    let totalLength = text.count * characterWidth
-    return totalLength > maxLength
-  }
+    func isTextLengthExceedingLimit(text: String) -> Bool {
+      let characterWidth: Int = 7;
+      let maxLength: Int = 380;
+      
+      let totalLength = text.count * characterWidth
+      return totalLength > maxLength
+    }
  
     // Function to print a label with text and barcode
     func printLabel(data: [String: Any]) {
@@ -77,7 +149,8 @@ class TSCPrinterModule: NSObject {
         let infoShipping = data["infoShipping"] as? String ?? ""
         let infoProduct = data["infoProduct"] as? String ?? ""
         let contact = data["contact"] as? String ?? ""
-      
+        let note = data["note"] as? String ?? ""
+        let carrierAlias = data["carrierAlias"] as? String ?? ""
       
         var PADDING_LEFT = 30;
         var FONT_SIZE = 19;
@@ -87,36 +160,31 @@ class TSCPrinterModule: NSObject {
         var rightDash = verticalDash(numberOfLines: 33)
         var qrDash = verticalDash(numberOfLines: 14)
       
+        let fontCommands = [
+            (473, 150, 18, 0, 1, 0, "Arial", labelQrcode), //Label qrCode
+            (paddingWidthTxtBarCode(carrierAlias: carrierAlias), 95, 28, 0, 1, 0, "Arial", labelBarcode), //Label BarCode
+            (120, 146, 28, 0, 1, 0, "Arial", classificationCode), //Classification code
+            (PADDING_LEFT, 190, FONT_SIZE, 0, 0, 0, "Arial", address), //Address
+            (PADDING_LEFT, isTextLengthExceedingLimit(text: address) ? 235 : 215, SIZE_BOLD, 0, 1, 0, "Arial", infoShipping), //Info shipping
+            (PADDING_LEFT, isTextLengthExceedingLimit(text: contact) ? 285 : 300, FONT_SIZE, 0, 0, 0, "Arial", infoProduct), //Info product
+            (PADDING_LEFT, isTextLengthExceedingLimit(text: contact) ? 310 : 325, SIZE_BOLD, 0, 1, 0, "Arial", contact), //Contact
+            (PADDING_LEFT, 350, FONT_SIZE, 0, 0, 0, "Arial", note),
+            (14,10, 22, 0, 4, 0, "Arial", horizontalDash(numberDashes: 78, x: 14, y: 10)),
+            (14,377, 22, 0, 4, 0, "Arial", horizontalDash(numberDashes: 78, x: 14, y: 377) ),
+            (14,120, 22, 0, 4, 0, "Arial", horizontalDash(numberDashes: 60, x: 14, y: 120) ),
+            (14,165, 22, 0, 4, 0, "Arial", horizontalDash(numberDashes: 78, x: 14, y: 165) ),
+            (12, 20, 10, 0, 10, 0, "Arial", leftDash),
+            (584, 20, 10, 0, 10, 0, "Arial", rightDash),
+            (450, 20, 10, 0, 10, 0, "Arial", qrDash)
+        ]
+      
         printQRCode(qrcode, label: labelQrcode)
+        printBarcode(barcode, label: labelBarcode, carrier: carrierAlias)
+      
+        for command in fontCommands {
+              wireless.windowsfont(command.0, y: command.1, height: command.2, rotation: command.3, style: command.4, withUnderline: command.5, fontName: command.6, content: command.7)
+        }
 
-         // Print Barcode
-         printBarcode(barcode, label: labelBarcode)
-
-         // Print Classification Code
-         wireless.windowsfont(120, y: 146, height: 28, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: classificationCode)
-
-         // Print Address
-         wireless.windowsfont(PADDING_LEFT, y: 195, height: FONT_SIZE, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: address)
-
-         // Print Info Shipping
-         let addressExceeds = isTextLengthExceedingLimit(text: address)
-         wireless.windowsfont(PADDING_LEFT, y: addressExceeds ? 244 : 224, height: SIZE_BOLD, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: infoShipping)
-
-         // Print Dashes
-      printDashes(left: leftDash, right: rightDash, qrDash: qrDash)
-
-         // Print Info Product
-        let contactExceeds = isTextLengthExceedingLimit(text: contact)
-        wireless.windowsfont(PADDING_LEFT, y: contactExceeds ? 300 : 316, height: FONT_SIZE, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: infoProduct)
-
-         // Print Contact
-         
-        wireless.windowsfont(PADDING_LEFT, y: contactExceeds ? 324 : 340, height: SIZE_BOLD, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: contact)
-
-         // Print "Cho Thử Hàng"
-         wireless.windowsfont(PADDING_LEFT, y: 364, height: FONT_SIZE, rotation: 0, style: 0, withUnderline: 0, fontName: "Arial", content: "Cho Thử Hàng")
-
-         // Print Label
          wireless.printlabel(1, copies: 1)
     }
   
@@ -124,29 +192,26 @@ class TSCPrinterModule: NSObject {
     func printQRCode(_ qrcode: String, label: String) {
         let qrCommand = "QRCODE 475,50,L,4,A,0,\"\(qrcode)\"\r\n"
         wireless.sendcommand(qrCommand)
-        wireless.windowsfont(473, y: 150, height: 18, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: label)
     }
 
-    func printBarcode(_ barcode: String, label: String) {
-        wireless.barcode("125", y: "33", barcodeType: "128", height: "60", readable: "0", rotation: "0", narrow: "2", wide: "1", code: barcode)
-        wireless.windowsfont(75, y: 95, height: 28, rotation: 0, style: 1, withUnderline: 0, fontName: "Arial", content: label)
-    }
-
-  func printDashes(left: String, right: String, qrDash: String) {
-        horizontalDash(numberDashes: 78, x: 14, y: 10) // Top dash
-        horizontalDash(numberDashes: 78, x: 14, y: 377) // Bottom dash
-        horizontalDash(numberDashes: 60, x: 14, y: 126) // Dash classification
-        horizontalDash(numberDashes: 78, x: 14, y: 170) // Dash address
-      wireless.windowsfont(12, y: 20, height: 10, rotation: 0, style: 10, withUnderline: 0, fontName: "Arial", content: left)
-      wireless.windowsfont(584, y: 20, height: 10, rotation: 0, style: 10, withUnderline: 0, fontName: "Arial", content: right)
-      wireless.windowsfont(450, y: 20, height: 10, rotation: 0, style: 10, withUnderline: 0, fontName: "Arial", content: qrDash)
+  func printBarcode(_ barcode: String, label: String, carrier: String) {
+      wireless.barcode(
+        paddingWidthBarcode(carrier: carrier),
+        y: "33",
+        barcodeType: "128",
+        height: "60",
+        readable: "0",
+        rotation: "0",
+        narrow: narrowBarcode(carrierAlias: carrier),
+        wide: "1",
+        code: barcode
+      )
     }
 
     func isTextLengthExceedingLimit(text: String, characterWidth: Int = 7, maxLength: Int = 380) -> Bool {
         let totalLength = text.count * characterWidth
         return totalLength > maxLength
     }
-
 
     @objc(initiatePrinting:labels:callback:) 
     func initiatePrinting(ip: String, labels: [[String: Any]], callback: @escaping RCTResponseSenderBlock) {
