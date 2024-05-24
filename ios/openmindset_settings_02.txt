@@ -1,0 +1,6 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project openmindset.xcodeproj -target openmindset -configuration openmindset -showBuildSettings
+
+User defaults from command line:
+    IDEPackageSupportUseBuiltinSCM = YES
+

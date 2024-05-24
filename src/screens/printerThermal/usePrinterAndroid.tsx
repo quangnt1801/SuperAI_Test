@@ -3,7 +3,7 @@ import { listBill } from "./type";
 import { getPathTextFont, insertLineBreaks, isTextLengthExceedingLimit } from "./UtilsPrinter";
 import TSCPrinter from 'rn-tsc-printer';
 
-const usePrinterAndroid = (listBill: listBill[], printer: TSCPrinter) => {
+const usePrinterAndroid = (listBill: listBill[]) => {
     const [isPrinting, setIsPrinting] = useState(false);
 
     const verticalDash = (numberOfLines: number) => {
@@ -19,7 +19,15 @@ const usePrinterAndroid = (listBill: listBill[], printer: TSCPrinter) => {
         return dashLine;
     }
 
+    const printer = new TSCPrinter({
+        ip: "192.168.1.100",
+        port: 9100,
+        width: 90,
+        height: 50,
+    });
+
     const narrowBarcode = (carrierAlias: String) => {
+
         switch (carrierAlias) {
             case "BEST":
                 return 3.99
@@ -106,30 +114,34 @@ const usePrinterAndroid = (listBill: listBill[], printer: TSCPrinter) => {
         await printer.setup()
 
         for (const item of listBill) {
-
-            await printer.ttf("Arial.ttf")
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 14,
                 y: 24,
                 size: 12,
                 path: fontArial,
-                text: leftDash
+                text: leftDash,
+                underLine: 0,
+                bold: 1
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 584,
                 y: 24,
                 size: 12,
                 path: fontArial,
-                text: rightDash
+                text: rightDash,
+                underLine: 0,
+                bold: 0
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 450,
                 y: 24,
                 size: 12,
                 path: fontArial,
-                text: qrDash
+                text: qrDash,
+                underLine: 0,
+                bold: 0
             })
 
             //3 cột này cần khởi tạo đầu tiên vì Border của nó có thể che content 
@@ -145,12 +157,14 @@ const usePrinterAndroid = (listBill: listBill[], printer: TSCPrinter) => {
                 type: '128',
                 code: item.barCode
             })
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: paddingWidthTxtBarCode(item.carrier_alias),
-                y: 92,
+                y: 95,
                 size: 26,
                 path: fontArial,
-                text: `${item.carrier_alias} | ${item.barCode}`
+                text: `${item.carrier_alias} | ${item.barCode}`,
+                underLine: 0,
+                bold: 1
             })
 
             const qrCodeCommand = `
@@ -159,62 +173,76 @@ const usePrinterAndroid = (listBill: listBill[], printer: TSCPrinter) => {
             `;
             await printer.cmd(qrCodeCommand)
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 470,
                 y: 148,
                 size: 18,
                 path: fontArial,
-                text: item.qrCode
+                text: item.qrCode,
+                underLine: 0,
+                bold: 1
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 120,
-                y: 140,
+                y: 136,
                 size: 28,
                 path: fontArialBold,
-                text: item.classificationCode
+                text: item.classificationCode,
+                underLine: 0,
+                bold: 1
             })
 
             let addressExceeds = isTextLengthExceedingLimit(item.location)
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 30,
                 y: 185,
                 size: FONT_SIZE,
                 path: fontArial,
-                text: insertLineBreaks(item.location)
+                text: insertLineBreaks(item.location),
+                underLine: 0,
+                bold: 0
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 30,
                 y: addressExceeds ? 238 : 205,
                 size: FONT_SIZE,
                 path: fontArial,
-                text: insertLineBreaks(`${item.phoneUser}${item.recipientName}- ĐH của shop ${item.shopName}`)
+                text: insertLineBreaks(`${item.phoneUser}${item.recipientName}- ĐH của shop ${item.shopName}`),
+                underLine: 1,
+                bold: 1
             })
 
             let contactExceeds = isTextLengthExceedingLimit("KHÔNG GIAO ĐƯỢC, GỌI NGAY 0902644227. CẢM ƠN AE SHIPPER.", 440)
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 30,
                 y: contactExceeds ? 290 : 305,
                 size: 18,
                 path: fontArial,
-                text: `SP Cần Giao: ${item.productType}`
+                text: `SP Cần Giao: ${item.productType}`,
+                underLine: 0,
+                bold: 0
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 30,
                 y: contactExceeds ? 315 : 330,
                 size: 18,
                 path: fontArial,
-                text: insertLineBreaks('KHÔNG GIAO ĐƯỢC, GỌI NGAY 0902644227. CẢM ƠN AE SHIPPER.', 440)
+                text: insertLineBreaks('KHÔNG GIAO ĐƯỢC, GỌI NGAY 0902644227. CẢM ƠN AE SHIPPER.', 400),
+                underLine: 0,
+                bold: 1
             })
 
-            await printer.windowfont({
+            await printer.windowsFont({
                 x: 30,
                 y: 355,
                 size: 18,
                 path: fontArial,
-                text: insertLineBreaks(item.note ?? "", 480)
+                text: insertLineBreaks(item.note ?? "", 360),
+                underLine: 0,
+                bold: 0
             })
 
             await printer.text({

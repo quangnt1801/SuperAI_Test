@@ -3,7 +3,7 @@ import { Alert, NativeModules } from "react-native";
 import { listBill } from "./type";
 import { insertLineBreaks } from "./UtilsPrinter";
 
-const usePrinterIOS = (listBill: listBill[], printer: any) => {
+const usePrinterIOS = (listBill: listBill[]) => {
 
     const { TSCPrinterModule } = NativeModules;
 

@@ -73,15 +73,10 @@ const PrinterThermalScreen = () => {
         },
     ]);
 
-    const printer = new TSCPrinter({
-        ip: "192.168.1.100",
-        port: 9100,
-        width: 90,
-        height: 50,
-    });
 
-    const { printerWithAndroid, isPrinting } = usePrinterAndroid(listBill, printer);
-    const { printerWithIOS } = usePrinterIOS(listBill, printer)
+
+    const { printerWithAndroid, isPrinting } = usePrinterAndroid(listBill);
+    const { printerWithIOS } = usePrinterIOS(listBill)
 
     const print = async () => {
         if (Platform.OS === 'ios') {
@@ -133,6 +128,14 @@ const PrinterThermalScreen = () => {
                 <Icon name='clipboard' size={22} color={'white'} />
                 <Text style={styles.txtBtPrinter}>In hoá đơn</Text>
             </TouchableOpacity>
+
+            {/* <TouchableOpacity
+                style={styles.btnDemo}
+                onPress={print}
+            >
+                <Icon name='clipboard' size={22} color={'white'} />
+                <Text style={styles.txtBtPrinter}>In hoá đơn</Text>
+            </TouchableOpacity> */}
         </View>
 
     )
@@ -148,6 +151,18 @@ const styles = StyleSheet.create({
         height: 80,
         position: 'absolute',
         bottom: 50,
+        backgroundColor: Colors.error,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+    btnDemo: {
+        width: 80,
+        height: 80,
+        position: 'absolute',
+        bottom: 50,
+        right: 100,
         backgroundColor: Colors.error,
         borderRadius: 12,
         alignItems: 'center',

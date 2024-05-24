@@ -1,12 +1,23 @@
 // TSCPrinterModule.swift
 
 import UIKit
-import tscswift
+#if !targetEnvironment(simulator)
+//import tscswift
+#endif
 
 @objc(TSCPrinterModule)
 class TSCPrinterModule: NSObject {
+#if !targetEnvironment(simulator)
     var wireless = WiFi()
     var isConnected = false // Variable to track connection status
+  
+  override init() {
+          #if targetEnvironment(simulator)
+          wireless = WiFiMock()
+          #else
+          wireless = WiFi()
+          #endif
+      }
 
     // Function to open a connection to the printer
     func openConnection(ip: String, completion: @escaping (Bool) -> Void) {
@@ -29,6 +40,7 @@ class TSCPrinterModule: NSObject {
         }
 
     // Setup printer configurations
+
     func setupPrinter() {
       let commands = [
               "DIRECTION 1\r\n",
@@ -227,4 +239,5 @@ class TSCPrinterModule: NSObject {
           }
       }
     }
+#endif
 }
